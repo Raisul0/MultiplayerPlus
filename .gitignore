@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MultiplayerPlusClient/obj
+/MultiplayerPlusCommon/bin/Debug
+/MultiplayerPlusCommon/obj
+/MultiplayerPlusServer/obj
