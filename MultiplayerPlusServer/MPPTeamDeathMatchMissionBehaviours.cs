@@ -18,22 +18,45 @@ namespace MultiplayerPlusServer
                     return new MissionBehavior[]
                     {
 
-                        new MPPTeamDeathMatchLobbyComponent(),
-                        new MPPTeamDeathMatchBehavior(),
-                        new MPPTeamDeathMatchCommonBehavior(),
+                        //new MPPTeamDeathMatchLobbyComponent(),
+                        //new MPPTeamDeathMatchBehavior(),
+                        //new MPPTeamDeathMatchCommonBehavior(),
 
+                        //new MultiplayerTimerComponent(),
+                        //new MultiplayerTeamSelectComponent(),
+                        //new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(),
+                        //new MPPTeamDeathMatchSpawningBehavior()),
+
+                        //new AgentHumanAILogic(),
+                        //new MissionLobbyEquipmentNetworkComponent(),
+                        //new MissionHardBorderPlacer(),
+                        //new MissionBoundaryPlacer(),
+                        //new MissionBoundaryCrossingHandler(),
+                        //new MultiplayerPollComponent(),
+                        //new MultiplayerGameNotificationsComponent(),
+                        //new MissionOptionsComponent(),
+                        //new MissionScoreboardComponent(new TDMScoreboardData()),
+
+                        
+                        new MissionMultiplayerTeamDeathmatch(),
+                        new MissionMultiplayerTeamDeathmatchClient(),
                         new MultiplayerTimerComponent(),
-                        new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(),
-                        new MPPTeamDeathMatchSpawningBehavior()),
-                        new AgentHumanAILogic(),
+                        new SpawnComponent(new TeamDeathmatchSpawnFrameBehavior(), new TeamDeathmatchSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
+                        new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
                         new MissionBoundaryPlacer(),
                         new MissionBoundaryCrossingHandler(),
                         new MultiplayerPollComponent(),
+                        new MultiplayerAdminComponent(),
                         new MultiplayerGameNotificationsComponent(),
                         new MissionOptionsComponent(),
                         new MissionScoreboardComponent(new TDMScoreboardData()),
+                        new MissionAgentPanicHandler(),
+                        new AgentHumanAILogic(),
+                        new EquipmentControllerLeaveLogic(),
+                        new MultiplayerPreloadHelper()
+
                     };
                 }, true, true);
 

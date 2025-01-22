@@ -13,7 +13,7 @@ namespace MultiplayerPlusServer
     /// <summary>
     /// Simple spawn behavior for the Battle Royale.    
     /// </summary>
-    public class MPPTeamDeathMatchSpawningBehavior : TeamDeathmatchSpawningBehavior
+    public class MPPTeamDeathMatchSpawningBehavior : SpawningBehaviorBase
     {
         public MPPTeamDeathMatchSpawningBehavior()
         {
@@ -23,27 +23,31 @@ namespace MultiplayerPlusServer
         public override void Initialize(SpawnComponent spawnComponent)
         {
             base.Initialize(spawnComponent);
-
-            base.OnAllAgentsFromPeerSpawnedFromVisuals += OnAllAgentsFromPeerSpawnedFromVisuals;
+            base.OnAllAgentsFromPeerSpawnedFromVisuals += this.OnAllAgentsFromPeerSpawnedFromVisuals;
+            if (this.GameMode.WarmupComponent == null)
+            {
+                this.RequestStartSpawnSession();
+            }
         }
 
+        // Token: 0x06000188 RID: 392 RVA: 0x000070A9 File Offset: 0x000052A9
         public override void Clear()
         {
             base.Clear();
-
-            base.OnAllAgentsFromPeerSpawnedFromVisuals -= OnAllAgentsFromPeerSpawnedFromVisuals;
+            base.OnAllAgentsFromPeerSpawnedFromVisuals -= this.OnAllAgentsFromPeerSpawnedFromVisuals;
         }
 
+        // Token: 0x06000189 RID: 393 RVA: 0x000070C3 File Offset: 0x000052C3
         public override void OnTick(float dt)
         {
-            if (IsSpawningEnabled && _spawnCheckTimer.Check(Mission.CurrentTime))
+            if (this.IsSpawningEnabled && this._spawnCheckTimer.Check(base.Mission.CurrentTime))
             {
-                SpawnAgents();
+                this.SpawnAgents();
             }
-
             base.OnTick(dt);
         }
 
+        // Token: 0x0600018A RID: 394 RVA: 0x000070F4 File Offset: 0x000052F4
         protected override void SpawnAgents()
         {
             BasicCultureObject @object = MBObjectManager.Instance.GetObject<BasicCultureObject>(MultiplayerOptions.OptionType.CultureTeam1.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions));
@@ -81,14 +85,10 @@ namespace MultiplayerPlusServer
                                 }
                             }
                             AgentBuildData agentBuildData = new AgentBuildData(heroCharacter).MissionPeer(component).Equipment(equipment).Team(component.Team).TroopOrigin(new BasicBattleAgentOrigin(heroCharacter)).IsFemale(component.Peer.IsFemale).BodyProperties(base.GetBodyProperties(component, (component.Team == base.Mission.AttackerTeam) ? @object : object2)).VisualsIndex(0).ClothingColor1((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color : basicCultureObject.ClothAlternativeColor).ClothingColor2((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color2 : basicCultureObject.ClothAlternativeColor2);
-                            if (this.GameMode.ShouldSpawnVisualsForServer(networkCommunicator))
+                            if (this.GameMode.ShouldSpawnVisualsForServer(networkCommunicator) && agentBuildData.AgentVisualsIndex == 0)
                             {
-                                //base.AgentVisualSpawnComponent.SpawnAgentVisualsForPeer(component, agentBuildData, component.SelectedTroopIndex, false, 0);
-                                if (agentBuildData.AgentVisualsIndex == 0)
-                                {
-                                    component.HasSpawnedAgentVisuals = true;
-                                    component.EquipmentUpdatingExpired = false;
-                                }
+                                component.HasSpawnedAgentVisuals = true;
+                                component.EquipmentUpdatingExpired = false;
                             }
                             this.GameMode.HandleAgentVisualSpawning(networkCommunicator, agentBuildData, 0, true);
                         }
@@ -97,54 +97,46 @@ namespace MultiplayerPlusServer
             }
         }
 
+        // Token: 0x0600018B RID: 395 RVA: 0x000073E0 File Offset: 0x000055E0
         public override bool AllowEarlyAgentVisualsDespawning(MissionPeer lobbyPeer)
         {
             return true;
         }
 
-        // TODO_KORNEEL GetRespawnPeriod will never be used, even in Duel, TDM, FFA, because there is always at least an attacker team
+        // Token: 0x0600018C RID: 396 RVA: 0x000073E4 File Offset: 0x000055E4
         public override int GetMaximumReSpawnPeriodForPeer(MissionPeer peer)
         {
-            if (GameMode.WarmupComponent != null && GameMode.WarmupComponent.IsInWarmup)
+            if (this.GameMode.WarmupComponent != null && this.GameMode.WarmupComponent.IsInWarmup)
             {
-                return MultiplayerWarmupComponent.RespawnPeriodInWarmup;
+                return 3;
             }
-            else
+            if (peer.Team != null)
             {
-                if (peer.Team != null)
+                if (peer.Team.Side == BattleSideEnum.Attacker)
                 {
-                    if (peer.Team.Side == BattleSideEnum.Attacker)
-                    {
-                        return MultiplayerOptions.OptionType.RespawnPeriodTeam1.GetIntValue();
-                    }
-                    else if (peer.Team.Side == BattleSideEnum.Defender)
-                    {
-                        return MultiplayerOptions.OptionType.RespawnPeriodTeam2.GetIntValue();
-                    }
+                    return MultiplayerOptions.OptionType.RespawnPeriodTeam1.GetIntValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions);
                 }
-
-                return -1;
+                if (peer.Team.Side == BattleSideEnum.Defender)
+                {
+                    return MultiplayerOptions.OptionType.RespawnPeriodTeam2.GetIntValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions);
+                }
             }
+            return -1;
         }
 
+        // Token: 0x0600018D RID: 397 RVA: 0x00007448 File Offset: 0x00005648
         protected override bool IsRoundInProgress()
         {
             return Mission.Current.CurrentState == Mission.State.Continuing;
         }
 
+        // Token: 0x0600018E RID: 398 RVA: 0x00007458 File Offset: 0x00005658
         private new void OnAllAgentsFromPeerSpawnedFromVisuals(MissionPeer peer)
         {
-            Team team = peer.Team;
-            bool isTeamOne = team == Mission.AttackerTeam;
-            bool isTeamTwo = team == Mission.DefenderTeam;
-
-            var teamCulture = MBObjectManager.Instance.GetObject<BasicCultureObject>(isTeamOne
-                ? (MultiplayerOptions.OptionType.CultureTeam1.GetStrValue())
-                : (MultiplayerOptions.OptionType.CultureTeam2.GetStrValue()));
-
-            var mpClass = MultiplayerClassDivisions.GetMPHeroClasses(teamCulture).ElementAt(peer.SelectedTroopIndex);
-
-            GameMode.ChangeCurrentGoldForPeer(peer, GameMode.GetCurrentGoldForPeer(peer) - mpClass.TroopCasualCost);
+            bool flag = peer.Team == base.Mission.AttackerTeam;
+            Team defenderTeam = base.Mission.DefenderTeam;
+            MultiplayerClassDivisions.MPHeroClass mpheroClass = MultiplayerClassDivisions.GetMPHeroClasses(MBObjectManager.Instance.GetObject<BasicCultureObject>(flag ? MultiplayerOptions.OptionType.CultureTeam1.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions) : MultiplayerOptions.OptionType.CultureTeam2.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions))).ElementAt(peer.SelectedTroopIndex);
+            this.GameMode.ChangeCurrentGoldForPeer(peer, this.GameMode.GetCurrentGoldForPeer(peer) - mpheroClass.TroopCasualCost);
         }
     }
 }

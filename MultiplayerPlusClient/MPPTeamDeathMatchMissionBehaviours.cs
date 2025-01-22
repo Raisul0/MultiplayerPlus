@@ -19,20 +19,39 @@ namespace MultiplayerPlusClient
             {
                 return new MissionBehavior[]
                 {
-                    MissionLobbyComponent.CreateBehavior(),
-                    new MPPTeamDeathMatchCommonBehavior(),
+                    //MissionLobbyComponent.CreateBehavior(),
+                    //new MPPTeamDeathMatchCommonBehavior(),
 
-                    // Native behaviors
+                    //// Native behaviors
+                    //new MultiplayerTimerComponent(),
+                    //new MissionLobbyEquipmentNetworkComponent(),
+                    //new MultiplayerTeamSelectComponent(),
+                    //new MissionHardBorderPlacer(),
+                    //new MissionBoundaryPlacer(),
+                    //new MissionBoundaryCrossingHandler(),
+                    //new MultiplayerPollComponent(),
+                    //new MultiplayerGameNotificationsComponent(),
+                    //new MissionOptionsComponent(),
+                    //new MissionScoreboardComponent(new TDMScoreboardData()),
+
+                    MissionLobbyComponent.CreateBehavior(),
+                    new MissionMultiplayerTeamDeathmatchClient(),
+                    new MultiplayerAchievementComponent(),
                     new MultiplayerTimerComponent(),
-                    new MultiplayerMissionAgentVisualSpawnComponent(),
                     new MissionLobbyEquipmentNetworkComponent(),
+                    new MultiplayerTeamSelectComponent(),
                     new MissionHardBorderPlacer(),
                     new MissionBoundaryPlacer(),
                     new MissionBoundaryCrossingHandler(),
                     new MultiplayerPollComponent(),
+                    new MultiplayerAdminComponent(),
                     new MultiplayerGameNotificationsComponent(),
                     new MissionOptionsComponent(),
                     new MissionScoreboardComponent(new TDMScoreboardData()),
+                    MissionMatchHistoryComponent.CreateIfConditionsAreMet(),
+                    new EquipmentControllerLeaveLogic(),
+                    new MissionRecentPlayersComponent(),
+                    new MultiplayerPreloadHelper()
                 };
             }, true, true);
         }

@@ -52,10 +52,7 @@
       },
       "MultiplayerPlusCommon/1.0.0": {
         "runtime": {
-          "MultiplayerPlusCommon.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "MultiplayerPlusCommon.dll": {}
         }
       },
       "TaleWorlds.AchievementSystem/1.0.0.0": {
