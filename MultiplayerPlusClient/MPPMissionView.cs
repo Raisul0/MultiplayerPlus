@@ -16,18 +16,28 @@ namespace MultiplayerPlus.Client
             {
                 MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
                 MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                MultiplayerViewCreator.CreateMultiplayerTeamSelectUIHandler(),
                 MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
                 ViewCreator.CreateMissionAgentStatusUIHandler(mission),
                 ViewCreator.CreateMissionMainAgentEquipmentController(mission),
                 ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
                 MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("MPPTeamDeathMatch"),
-                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, true),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, false),
+                MultiplayerViewCreator.CreateMultiplayerEndOfRoundUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                 MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                MultiplayerViewCreator.CreateMissionFlagMarkerUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionHUDExtensionUIHandler(),
                 MultiplayerViewCreator.CreateMultiplayerMissionDeathCardUIHandler(null),
                 ViewCreator.CreateOptionsUIHandler(),
                 ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
                 ViewCreator.CreateMissionBoundaryCrossingView(),
                 new MissionBoundaryWallView(),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView()
             };
             return missionViews.ToArray();
         }

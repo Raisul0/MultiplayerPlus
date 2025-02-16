@@ -5,7 +5,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.DedicatedCustomServer;
 using static TaleWorlds.MountAndBlade.MultiplayerOptions;
 
-namespace MultiplayerPlus.Server
+namespace MultiplayerPlusServer
 {
     /// <summary>
     /// Start custom game modes. Inspired by mentalrob's ChatCommands.

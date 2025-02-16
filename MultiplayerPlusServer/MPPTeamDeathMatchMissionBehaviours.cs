@@ -1,4 +1,4 @@
-﻿using MultiplayerPlusCommon;
+﻿using MultiplayerPlusCommon.Behaviors;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Multiplayer;
@@ -37,11 +37,11 @@ namespace MultiplayerPlusServer
                         //new MissionOptionsComponent(),
                         //new MissionScoreboardComponent(new TDMScoreboardData()),
 
-                        
+                        MissionLobbyComponent.CreateBehavior(),
                         new MissionMultiplayerTeamDeathmatch(),
                         new MissionMultiplayerTeamDeathmatchClient(),
                         new MultiplayerTimerComponent(),
-                        new SpawnComponent(new TeamDeathmatchSpawnFrameBehavior(), new TeamDeathmatchSpawningBehavior()),
+                        new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(), new MPPTeamDeathMatchSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
                         new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
@@ -55,7 +55,9 @@ namespace MultiplayerPlusServer
                         new MissionAgentPanicHandler(),
                         new AgentHumanAILogic(),
                         new EquipmentControllerLeaveLogic(),
-                        new MultiplayerPreloadHelper()
+                        new MultiplayerPreloadHelper(),
+                        new TauntBehavior(),
+                        new ShoutBehavior()
 
                     };
                 }, true, true);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MultiplayerPlusCommon.Constants;
 using NetworkMessages.FromServer;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -84,6 +85,13 @@ namespace MultiplayerPlusServer
                                     equipment[valueTuple.Item1] = valueTuple.Item2;
                                 }
                             }
+
+                            equipment[EquipmentIndex.Head] = CustomAgent.Head;
+                            equipment[EquipmentIndex.Body] = CustomAgent.Body;
+                            equipment[EquipmentIndex.Leg] = CustomAgent.Leg;
+                            equipment[EquipmentIndex.Gloves] = CustomAgent.Gloves;
+                            equipment[EquipmentIndex.Cape] = CustomAgent.Cape;
+
                             AgentBuildData agentBuildData = new AgentBuildData(heroCharacter).MissionPeer(component).Equipment(equipment).Team(component.Team).TroopOrigin(new BasicBattleAgentOrigin(heroCharacter)).IsFemale(component.Peer.IsFemale).BodyProperties(base.GetBodyProperties(component, (component.Team == base.Mission.AttackerTeam) ? @object : object2)).VisualsIndex(0).ClothingColor1((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color : basicCultureObject.ClothAlternativeColor).ClothingColor2((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color2 : basicCultureObject.ClothAlternativeColor2);
                             if (this.GameMode.ShouldSpawnVisualsForServer(networkCommunicator) && agentBuildData.AgentVisualsIndex == 0)
                             {

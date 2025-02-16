@@ -35,6 +35,6 @@ public class SubModule : MBSubModuleBase
     }
     private void AddCommonBehaviors(Mission mission)
     {
-        //mission.AddMissionBehavior(new ServerAutoHandler());
+        mission.AddMissionBehavior(new ServerAutoHandler());
     }
 }

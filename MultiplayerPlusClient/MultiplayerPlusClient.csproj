@@ -215,6 +215,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientAutoHandler.cs" />
+    <Compile Include="CustomViews\MPShoutMenuView.cs" />
+    <Compile Include="CustomViews\MPTauntMenuView.cs" />
+    <Compile Include="Extensions\Shout\AgentShoutHandler.cs" />
+    <Compile Include="Extensions\Shout\AgentShoutTextDisplayHandler.cs" />
     <Compile Include="MPPMissionView.cs" />
     <Compile Include="MPPTeamDeathMatchMissionBehaviours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,6 +8,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.MissionRepresentatives;
 using TaleWorlds.MountAndBlade.Network.Messages;
 using TaleWorlds.ObjectSystem;
 using MathF = TaleWorlds.Library.MathF;
@@ -70,7 +71,7 @@ namespace MultiplayerPlusServer
 
         protected override void HandleEarlyNewClientAfterLoadingFinished(NetworkCommunicator networkPeer)
         {
-
+            networkPeer.AddComponent<TeamDeathmatchMissionRepresentative>();
         }
         public override void OnMissionTick(float dt)
         {

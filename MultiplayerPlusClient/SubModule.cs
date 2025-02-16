@@ -33,7 +33,7 @@ namespace MultiplayerPlusClient
 
         public void AddCommonBehaviors(Mission mission)
         {
-            //mission.AddMissionBehavior(new ClientAutoHandler());
+            mission.AddMissionBehavior(new ClientAutoHandler());
         }
     }
 }
