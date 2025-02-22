@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Module>
+	<Name value="MultiplayerPlus"/>
+	<Id value="MultiplayerPlus"/>
+	<Version value="v1.0.0.0"/>
+	<ModuleCategory value="Multiplayer"/>
+	<DependedModules>
+		<DependedModule Id="Native" DependentVersion="v1.2.8" Optional="false"/>
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value="MultiplayerPlusCommon" />
+			<DLLName value="MultiplayerPlusCommon.dll" />
+			<SubModuleClassType value="MultiplayerPlusCommon.SubModule" />
+		</SubModule>
+		<SubModule>
+			<Name value="MultiplayerPlus"/>
+			<DLLName value="MultiplayerPlusClient.dll"/>
+			<SubModuleClassType value="MultiplayerPlusClient.SubModule"/>
+		</SubModule>
+	</SubModules>
+	<Xmls>
+	    <XmlNode>
+          <XmlName id="GameText" path="multiplayer_strings"/>
+        </XmlNode>
+	</Xmls>
+</Module>

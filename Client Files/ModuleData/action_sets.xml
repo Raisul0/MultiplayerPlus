@@ -1,0 +1,13 @@
+﻿<action_sets>
+  <action_set
+    id="as_human_warrior"
+    skeleton="human_skeleton"
+    movement_system="bipedal">
+  <action
+      type="act_taunt_accolades"
+      animation="taunt_accolades" />
+  <action
+      type="act_taunt_howl"
+      animation="taunt_howl" />
+  </action_set>
+</action_sets>

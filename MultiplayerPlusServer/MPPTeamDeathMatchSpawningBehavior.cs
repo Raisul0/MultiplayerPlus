@@ -92,7 +92,16 @@ namespace MultiplayerPlusServer
                             equipment[EquipmentIndex.Gloves] = CustomAgent.Gloves;
                             equipment[EquipmentIndex.Cape] = CustomAgent.Cape;
 
-                            AgentBuildData agentBuildData = new AgentBuildData(heroCharacter).MissionPeer(component).Equipment(equipment).Team(component.Team).TroopOrigin(new BasicBattleAgentOrigin(heroCharacter)).IsFemale(component.Peer.IsFemale).BodyProperties(base.GetBodyProperties(component, (component.Team == base.Mission.AttackerTeam) ? @object : object2)).VisualsIndex(0).ClothingColor1((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color : basicCultureObject.ClothAlternativeColor).ClothingColor2((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color2 : basicCultureObject.ClothAlternativeColor2);
+                            AgentBuildData agentBuildData = new AgentBuildData(heroCharacter).
+                                MissionPeer(component).
+                                Equipment(equipment).
+                                Team(component.Team).
+                                TroopOrigin(new BasicBattleAgentOrigin(heroCharacter)).
+                                IsFemale(component.Peer.IsFemale).
+                                BodyProperties(base.GetBodyProperties(component, (component.Team == base.Mission.AttackerTeam) ? @object : object2)).
+                                VisualsIndex(0).
+                                ClothingColor1((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color : basicCultureObject.ClothAlternativeColor).
+                                ClothingColor2((component.Team == base.Mission.AttackerTeam) ? basicCultureObject.Color2 : basicCultureObject.ClothAlternativeColor2);
                             if (this.GameMode.ShouldSpawnVisualsForServer(networkCommunicator) && agentBuildData.AgentVisualsIndex == 0)
                             {
                                 component.HasSpawnedAgentVisuals = true;
@@ -145,6 +154,15 @@ namespace MultiplayerPlusServer
             Team defenderTeam = base.Mission.DefenderTeam;
             MultiplayerClassDivisions.MPHeroClass mpheroClass = MultiplayerClassDivisions.GetMPHeroClasses(MBObjectManager.Instance.GetObject<BasicCultureObject>(flag ? MultiplayerOptions.OptionType.CultureTeam1.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions) : MultiplayerOptions.OptionType.CultureTeam2.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions))).ElementAt(peer.SelectedTroopIndex);
             this.GameMode.ChangeCurrentGoldForPeer(peer, this.GameMode.GetCurrentGoldForPeer(peer) - mpheroClass.TroopCasualCost);
+
+            var equipment = peer.ControlledAgent.SpawnEquipment;
+            equipment[EquipmentIndex.Head] = CustomAgent.Head;
+            equipment[EquipmentIndex.Body] = CustomAgent.Body;
+            equipment[EquipmentIndex.Leg] = CustomAgent.Leg;
+            equipment[EquipmentIndex.Gloves] = CustomAgent.Gloves;
+            equipment[EquipmentIndex.Cape] = CustomAgent.Cape;
+
+            peer.ControlledAgent.UpdateSpawnEquipmentAndRefreshVisuals(equipment);
         }
     }
 }

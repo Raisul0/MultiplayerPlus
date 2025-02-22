@@ -35,11 +35,11 @@ namespace MultiplayerPlusServer.Extensions.Taunt
             if (suitableTauntAction.Index >= 0)
             {
                 networkPeer.ControlledAgent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
-                var position = networkPeer.ControlledAgent.Position;
-                var soundCodeId = SoundEvent.GetEventIdFromString(soundEventName);
-                var soundEvent = SoundEvent.CreateEvent(soundCodeId, Mission.Current.Scene);
+                //var position = networkPeer.ControlledAgent.Position;
+                //var soundCodeId = SoundEvent.GetEventIdFromString(soundEventName);
+                //var soundEvent = SoundEvent.CreateEvent(soundCodeId, Mission.Current.Scene);
 
-                Mission.Current.MakeSound(soundCodeId, position, false, true, -1, -1);
+                //Mission.Current.MakeSound(soundCodeId, position, false, true, -1, -1);
             }
 
 

@@ -18,27 +18,8 @@ namespace MultiplayerPlusServer
                     return new MissionBehavior[]
                     {
 
-                        //new MPPTeamDeathMatchLobbyComponent(),
-                        //new MPPTeamDeathMatchBehavior(),
-                        //new MPPTeamDeathMatchCommonBehavior(),
-
-                        //new MultiplayerTimerComponent(),
-                        //new MultiplayerTeamSelectComponent(),
-                        //new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(),
-                        //new MPPTeamDeathMatchSpawningBehavior()),
-
-                        //new AgentHumanAILogic(),
-                        //new MissionLobbyEquipmentNetworkComponent(),
-                        //new MissionHardBorderPlacer(),
-                        //new MissionBoundaryPlacer(),
-                        //new MissionBoundaryCrossingHandler(),
-                        //new MultiplayerPollComponent(),
-                        //new MultiplayerGameNotificationsComponent(),
-                        //new MissionOptionsComponent(),
-                        //new MissionScoreboardComponent(new TDMScoreboardData()),
-
                         MissionLobbyComponent.CreateBehavior(),
-                        new MissionMultiplayerTeamDeathmatch(),
+                        new MPPTeamDeathMatchBehavior(),
                         new MissionMultiplayerTeamDeathmatchClient(),
                         new MultiplayerTimerComponent(),
                         new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(), new MPPTeamDeathMatchSpawningBehavior()),

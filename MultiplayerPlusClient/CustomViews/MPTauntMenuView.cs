@@ -18,6 +18,7 @@ using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.MountAndBlade.ViewModelCollection;
 using TaleWorlds.MountAndBlade.ViewModelCollection.HUD;
+using TaleWorlds.TwoDimension;
 
 namespace MultiplayerPlusClient.CustomViews
 {
@@ -26,12 +27,16 @@ namespace MultiplayerPlusClient.CustomViews
     {
         private bool complete = false;
         private bool _visiable = false;
+        private SpriteCategory spriteCategory;
+        // Token: 0x0400037C RID: 892
+        private List<string> spriteCategoryNames = new List<string>();
 
         int ViewOrderPriority = 100;
 
         public override void OnMissionScreenInitialize()
         {
             base.OnMissionScreenInitialize();
+
         }
 
         public override void OnBehaviorInitialize()
@@ -39,7 +44,20 @@ namespace MultiplayerPlusClient.CustomViews
             base.OnBehaviorInitialize();
             _gauntletLayer = new GauntletLayer(ViewOrderPriority);
             this._dataSource = new MPTauntMenuVM();
+            this.LoadSpriteCategories();
+        }
 
+        private void LoadSpriteCategories()
+        {
+            this.spriteCategoryNames.Add("ui_taunt_sprits");
+            SpriteData spriteData = UIResourceManager.SpriteData;
+            TwoDimensionEngineResourceContext resourceContext = UIResourceManager.ResourceContext;
+            ResourceDepot resourceDepot = UIResourceManager.UIResourceDepot;
+            foreach (string categoryName in this.spriteCategoryNames)
+            {
+                this.spriteCategory = spriteData.SpriteCategories[categoryName];
+                this.spriteCategory.Load(resourceContext, resourceDepot);
+            }
         }
 
         public void Show()

@@ -20,20 +20,6 @@ namespace MultiplayerPlusClient
             {
                 return new MissionBehavior[]
                 {
-                    //MissionLobbyComponent.CreateBehavior(),
-                    //new MPPTeamDeathMatchCommonBehavior(),
-
-                    //// Native behaviors
-                    //new MultiplayerTimerComponent(),
-                    //new MissionLobbyEquipmentNetworkComponent(),
-                    //new MultiplayerTeamSelectComponent(),
-                    //new MissionHardBorderPlacer(),
-                    //new MissionBoundaryPlacer(),
-                    //new MissionBoundaryCrossingHandler(),
-                    //new MultiplayerPollComponent(),
-                    //new MultiplayerGameNotificationsComponent(),
-                    //new MissionOptionsComponent(),
-                    //new MissionScoreboardComponent(new TDMScoreboardData()),
 
 					MissionLobbyComponent.CreateBehavior(),
                     new MissionMultiplayerTeamDeathmatchClient(),

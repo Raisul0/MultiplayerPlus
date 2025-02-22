@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Behaviors\ShoutBehavior.cs" />
     <Compile Include="Behaviors\TauntBehavior.cs" />
+    <Compile Include="Constants\DBConnectionInfo.cs" />
     <Compile Include="Constants\MPShoutWheel.cs" />
     <Compile Include="Constants\MPTauntWheel.cs" />
     <Compile Include="Constants\CustomAgent.cs" />
@@ -99,8 +100,6 @@
     <Compile Include="ViewModels\MPTauntMenuVM.cs" />
     <Compile Include="ViewModels\MPTauntSlotVM.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CloneClass\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
