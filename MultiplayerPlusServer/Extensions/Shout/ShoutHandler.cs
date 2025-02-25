@@ -26,17 +26,29 @@ namespace MultiplayerPlusServer.Extensions.Shout
         public bool MakeShout(NetworkCommunicator networkPeer, StartShout baseMessage)
         {
             var peer = baseMessage.Player;
-            var shoutIndex = baseMessage.ShoutIndex;
-            var voiceType = MPShoutWheel.Shouts.FirstOrDefault(x => x.ShoutIndex == shoutIndex)?.VoiceType ?? "CustomShout";
-            networkPeer.ControlledAgent.MakeVoice(new SkinVoiceType(voiceType), SkinVoiceManager.CombatVoiceNetworkPredictionType.OwnerPrediction);
+            var shoudId = baseMessage.ShoutId;
 
-            if (GameNetwork.IsMultiplayer)
+            var player = MPPlayers.GetMPAgentFromPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString());
+
+            if(player != null)
             {
-                GameNetwork.BeginBroadcastModuleEvent();
-                GameNetwork.WriteMessage(new AgentShoutTextDisplay(networkPeer.ControlledAgent.Index, voiceType));
-                GameNetwork.EndBroadcastModuleEvent(GameNetwork.EventBroadcastFlags.ExcludeOtherTeamPlayers, networkPeer);
-            }
+                var voiceType = player.ShoutWheel.FindShoutVoiceType(shoudId);
 
+                if (!string.IsNullOrEmpty(voiceType))
+                {
+
+                    networkPeer.ControlledAgent.MakeVoice(new SkinVoiceType(voiceType), SkinVoiceManager.CombatVoiceNetworkPredictionType.OwnerPrediction);
+
+                    if (GameNetwork.IsMultiplayer)
+                    {
+                        GameNetwork.BeginBroadcastModuleEvent();
+                        GameNetwork.WriteMessage(new AgentShoutTextDisplay(networkPeer.ControlledAgent.Index, voiceType));
+                        GameNetwork.EndBroadcastModuleEvent(GameNetwork.EventBroadcastFlags.ExcludeOtherTeamPlayers, networkPeer);
+                    }
+
+                }
+            }
+            
             return true;
         }
     }

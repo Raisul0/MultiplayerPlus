@@ -7,15 +7,15 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromClient
     [DefineGameNetworkMessageTypeForMod(GameNetworkMessageSendType.FromClient)]
     public sealed class StartShout : GameNetworkMessage
     {
-        public int ShoutIndex { get; set; }
+        public string ShoutId { get; set; }
         public int AgentIndex { get; private set; }
         public NetworkCommunicator Player { get; set; }
         public StartShout()
         {
         }
-        public StartShout(int shoutIndex,int agent, NetworkCommunicator player)
+        public StartShout(string shoutId,int agent, NetworkCommunicator player)
         {
-            ShoutIndex = shoutIndex;
+            ShoutId = shoutId;
             AgentIndex = agent;    
             Player = player;
         }
@@ -33,14 +33,14 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromClient
         {
             bool result = true;
             this.AgentIndex = ReadAgentIndexFromPacket(ref result);
-            this.ShoutIndex = ReadIntFromPacket(new CompressionInfo.Integer(-1, 5000, true), ref result);
+            this.ShoutId = ReadStringFromPacket(ref result);
             this.Player = ReadNetworkPeerReferenceFromPacket(ref result);
             return result;
         }
 
         protected override void OnWrite()
         {
-            WriteIntToPacket(ShoutIndex, new CompressionInfo.Integer(-1, 5000, true));
+            WriteStringToPacket(ShoutId);
             WriteAgentIndexToPacket(this.AgentIndex);
             WriteNetworkPeerReferenceToPacket(this.Player);
         }

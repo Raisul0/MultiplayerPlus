@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
 namespace MultiplayerPlusServer.Extensions.Taunt
@@ -23,25 +24,23 @@ namespace MultiplayerPlusServer.Extensions.Taunt
         public bool UseTaunt(NetworkCommunicator networkPeer, StartTaunt baseMessage)
         {
             var peer = baseMessage.Player;
-            var tauntIndex = baseMessage.TauntIndex;
+            var tauntId = baseMessage.TauntId;
 
-            var taunt = MPTauntWheel.Taunts.FirstOrDefault(x => x.TauntId == tauntIndex);
+            var player = MPPlayers.GetMPAgentFromPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString());
 
-            var tauntAction = taunt?.TauntAction ?? string.Empty;
-            var soundEventName = taunt?.SoundEventName ?? string.Empty;
-
-            ActionIndexCache suitableTauntAction = ActionIndexCache.Create(tauntAction);
-
-            if (suitableTauntAction.Index >= 0)
+            if(player != null)
             {
-                networkPeer.ControlledAgent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
-                //var position = networkPeer.ControlledAgent.Position;
-                //var soundCodeId = SoundEvent.GetEventIdFromString(soundEventName);
-                //var soundEvent = SoundEvent.CreateEvent(soundCodeId, Mission.Current.Scene);
+                var tauntAction = player.TauntWheel.FindTauntAction(tauntId);
 
-                //Mission.Current.MakeSound(soundCodeId, position, false, true, -1, -1);
+                ActionIndexCache suitableTauntAction = ActionIndexCache.Create(tauntAction);
+
+                if (suitableTauntAction.Index >= 0)
+                {
+                    var agent = networkPeer.ControlledAgent;
+                    agent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+                }
             }
-
+            
 
             return true;
         }

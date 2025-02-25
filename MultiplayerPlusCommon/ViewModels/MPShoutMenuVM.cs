@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MultiplayerPlusCommon.Behaviors;
+using MultiplayerPlusCommon.Constants;
 using MultiplayerPlusCommon.NetworkMessages.FromClient;
+using MultiplayerPlusCommon.ObjectClass;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -33,20 +35,28 @@ namespace MultiplayerPlusCommon.ViewModels
 
         public MPShoutMenuVM()
         {
-            ShoutSlots = PopulateShoutSlots();
             RefreshValues();
+            Populated = false;
         }
-        private MBBindingList<MPShoutSlotVM> PopulateShoutSlots()
+
+        public void SetSlots()
+        {
+            if (GameNetwork.IsClient)
+            {
+                GameNetwork.BeginModuleEventAsClient();
+                GameNetwork.WriteMessage(new GetPlayerShouts(GameNetwork.MyPeer.UserName));
+                GameNetwork.EndModuleEventAsClient();
+            }
+        }
+
+        public MBBindingList<MPShoutSlotVM> PopulateShoutSlots(List<MPShout> shouts)
         {
             var _shoutSlots = new MBBindingList<MPShoutSlotVM>();
-
-            var shoutBehavior = Mission.Current.GetMissionBehavior<ShoutBehavior>();
-
-            foreach (var item in shoutBehavior.Shouts)
+            foreach (var shout in shouts)
             {
-                _shoutSlots.Add(new MPShoutSlotVM(item.ShoutIndex, item.ShoutName, OnSlotFocused));
+                _shoutSlots.Add(new MPShoutSlotVM(shout.ShoutId, shout.ShoutName, shout.VoiceType, OnSlotFocused));
             }
-
+            Populated = true;
             return _shoutSlots;
         }
 
@@ -60,18 +70,19 @@ namespace MultiplayerPlusCommon.ViewModels
             if (_selectedSlot != null)
             {
 
-                var shoutIndex = _selectedSlot.ShoutIndex;
+                var shoutId = _selectedSlot.ShoutId;
 
                 if (GameNetwork.IsClient)
                 {
                     GameNetwork.BeginModuleEventAsClient();
-                    GameNetwork.WriteMessage(new StartShout(shoutIndex,Agent.Main.Index, GameNetwork.MyPeer));
+                    GameNetwork.WriteMessage(new StartShout(shoutId, Agent.Main.Index, GameNetwork.MyPeer));
                     GameNetwork.EndModuleEventAsClient();
                 }
             }
 
         }
 
+        public bool Populated { get; set; }
         private MBBindingList<MPShoutSlotVM> _shoutSlots;
         private MPShoutSlotVM _selectedSlot;
     }

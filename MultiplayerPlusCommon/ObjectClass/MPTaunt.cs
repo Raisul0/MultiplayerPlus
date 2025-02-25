@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiplayerPlusCommon.ObjectClasses
+namespace MultiplayerPlusCommon.ObjectClass
 {
     public class MPTaunt
     {
-        public MPTaunt(int tauntId, string tauntName,string tauntAction, string soundEventName)
+        public MPTaunt()
+        {
+            TauntId = "";
+            TauntName = "None";
+            TauntAction = "";
+            SoundEventName = "";
+        }
+        public MPTaunt(string tauntId, string tauntName,string tauntAction, string soundEventName= null)
         {
             TauntId = tauntId;
             TauntName = tauntName;
@@ -16,7 +23,7 @@ namespace MultiplayerPlusCommon.ObjectClasses
             SoundEventName = soundEventName;
         }
 
-        public int TauntId { get; set; }
+        public string TauntId { get; set; }
         public string TauntName { get; set; }
         public string TauntAction { get; set; }
         public string SoundEventName { get; set; }

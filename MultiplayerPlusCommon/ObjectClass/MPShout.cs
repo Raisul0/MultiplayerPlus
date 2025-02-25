@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static TaleWorlds.MountAndBlade.SkinVoiceManager;
 
-namespace MultiplayerPlusCommon.ObjectClasses
+namespace MultiplayerPlusCommon.ObjectClass
 {
     public class MPShout
     {
-        public MPShout(int shoutIndex, string shoutName, string voiceType)
+        public MPShout() 
         {
-            ShoutIndex = shoutIndex;
+            ShoutId = "";
+            ShoutName = "None";
+            VoiceType = "";
+        }
+        public MPShout(string shoutId, string shoutName, string voiceType)
+        {
+            ShoutId = shoutId;
             ShoutName = shoutName;
             VoiceType = voiceType;
         }
 
-        public int ShoutIndex { get; set; }
+        public string ShoutId { get; set; }
         public string ShoutName { get; set; }
-        public string VoiceType { get; set;}
+        public string VoiceType { get; set; }
     }
 }

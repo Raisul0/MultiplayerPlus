@@ -1,20 +1,21 @@
 ﻿using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Network.Messages;
+using TaleWorlds.ObjectSystem;
 
 namespace MultiplayerPlusCommon.NetworkMessages.FromClient
 {
     [DefineGameNetworkMessageTypeForMod(GameNetworkMessageSendType.FromClient)]
-    public sealed class StartTaunt : GameNetworkMessage
+    public sealed class GetPlayerShouts : GameNetworkMessage
     {
-        public string TauntId { get; set; }
-        public NetworkCommunicator Player { get; set; }
-        public StartTaunt() { 
+        public string UserName { get; set; }
+        public MatrixFrame Location { get; set; }
+        public GetPlayerShouts() { 
         }
-        public StartTaunt(string tauntId, NetworkCommunicator player)
+        public GetPlayerShouts(string userName)
         {
-            TauntId = tauntId;
-            Player = player;
+            UserName = userName;
         }
         protected override MultiplayerMessageFilter OnGetLogFilter()
         {
@@ -29,15 +30,13 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromClient
         protected override bool OnRead()
         {
             bool result = true;
-            this.TauntId = ReadStringFromPacket(ref result);
-            this.Player = ReadNetworkPeerReferenceFromPacket(ref result);
+            this.UserName = ReadStringFromPacket(ref result);
             return result;
         }
 
         protected override void OnWrite()
         {
-            WriteStringToPacket(TauntId);
-            WriteNetworkPeerReferenceToPacket(this.Player);
+            WriteStringToPacket(this.UserName);
         }
     }
 }

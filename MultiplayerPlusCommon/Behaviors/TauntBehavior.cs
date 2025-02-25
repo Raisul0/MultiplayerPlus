@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using MultiplayerPlusCommon.Constants;
-using MultiplayerPlusCommon.ObjectClasses;
+using MultiplayerPlusCommon.ObjectClass;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using static TaleWorlds.MountAndBlade.Diamond.TauntUsageManager;
@@ -44,7 +44,7 @@ namespace MultiplayerPlusCommon.Behaviors
 
         public void Read()
         {
-            Taunts = MPTauntWheel.Taunts;
+            //Taunts = MPTauntWheel.Taunts;
         }
 
 

@@ -51,6 +51,7 @@ namespace MultiplayerPlusServer
         // Token: 0x0600018A RID: 394 RVA: 0x000070F4 File Offset: 0x000052F4
         protected override void SpawnAgents()
         {
+            
             BasicCultureObject @object = MBObjectManager.Instance.GetObject<BasicCultureObject>(MultiplayerOptions.OptionType.CultureTeam1.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions));
             BasicCultureObject object2 = MBObjectManager.Instance.GetObject<BasicCultureObject>(MultiplayerOptions.OptionType.CultureTeam2.GetStrValue(MultiplayerOptions.MultiplayerOptionsAccessMode.CurrentMapOptions));
             foreach (NetworkCommunicator networkCommunicator in GameNetwork.NetworkPeers)
@@ -85,12 +86,8 @@ namespace MultiplayerPlusServer
                                     equipment[valueTuple.Item1] = valueTuple.Item2;
                                 }
                             }
-
-                            equipment[EquipmentIndex.Head] = CustomAgent.Head;
-                            equipment[EquipmentIndex.Body] = CustomAgent.Body;
-                            equipment[EquipmentIndex.Leg] = CustomAgent.Leg;
-                            equipment[EquipmentIndex.Gloves] = CustomAgent.Gloves;
-                            equipment[EquipmentIndex.Cape] = CustomAgent.Cape;
+                            this.GameMode.ChangeCurrentGoldForPeer(component, 100000000);
+                            MPPlayers.EquipPlayerCustomEquipment(networkCommunicator.PlayerConnectionInfo.PlayerID.ToString(), mpheroClassForPeer.StringId,equipment);
 
                             AgentBuildData agentBuildData = new AgentBuildData(heroCharacter).
                                 MissionPeer(component).
@@ -156,11 +153,8 @@ namespace MultiplayerPlusServer
             this.GameMode.ChangeCurrentGoldForPeer(peer, this.GameMode.GetCurrentGoldForPeer(peer) - mpheroClass.TroopCasualCost);
 
             var equipment = peer.ControlledAgent.SpawnEquipment;
-            equipment[EquipmentIndex.Head] = CustomAgent.Head;
-            equipment[EquipmentIndex.Body] = CustomAgent.Body;
-            equipment[EquipmentIndex.Leg] = CustomAgent.Leg;
-            equipment[EquipmentIndex.Gloves] = CustomAgent.Gloves;
-            equipment[EquipmentIndex.Cape] = CustomAgent.Cape;
+
+            MPPlayers.EquipPlayerCustomEquipment(peer.GetNetworkPeer().PlayerConnectionInfo.PlayerID.ToString(), mpheroClass.StringId, equipment);
 
             peer.ControlledAgent.UpdateSpawnEquipmentAndRefreshVisuals(equipment);
         }

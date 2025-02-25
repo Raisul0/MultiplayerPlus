@@ -1,5 +1,6 @@
 ﻿
 using MultiplayerPlusCommon.Constants;
+using MultiplayerPlusCommon.ObjectClass;
 using NetworkMessages.FromServer;
 using Npgsql;
 using System;
@@ -57,7 +58,7 @@ namespace MultiplayerPlusServer
         protected override void HandleEarlyNewClientAfterLoadingFinished(NetworkCommunicator networkPeer)
         {
             networkPeer.AddComponent<TeamDeathmatchMissionRepresentative>();
-            //ConnectToDB();
+            ConnectToDB(networkPeer);
         }
 
         protected override void HandleNewClientAfterSynchronized(NetworkCommunicator networkPeer)
@@ -196,20 +197,56 @@ namespace MultiplayerPlusServer
             return result;
         }
 
-        public void ConnectToDB()
+        public void ConnectToDB(NetworkCommunicator peer)
         {
             try
             {
-                var query = "Select * from user_items where user_Id='720363cb-9acb-41e9-a48a-948c6444238e'";
+
+                MPAgent player = new MPAgent(peer);
+                PostgresSQLQuery.SetSteamId(player.SteamId);
+
+                var query = PostgresSQLQuery.GetPlayerAllLoadouts;
                 using var conn =new NpgsqlConnection(DBConnectionInfo.ConnectionString);
                 conn.Open();
                 using NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
-                // Read data from the table
+
                 while (reader.Read())
                 {
-                    var ItemId = reader.GetString(2);
+                    var classCosmatics = new MPAgentClassCosmetic();
+
+                    classCosmatics.Class = reader[0].ToString();
+                    classCosmatics.Head = reader[1].ToString();
+                    classCosmatics.Shoulder = reader[2].ToString();
+                    classCosmatics.Body = reader[3].ToString();
+                    classCosmatics.Arms = reader[4].ToString();
+                    classCosmatics.Legs = reader[5].ToString();
+
+                    player.ClassCosmetics.Add(classCosmatics);
                 }
+
+                reader.NextResult();
+
+                while (reader.Read())
+                {
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        var tauntId = reader["taunt_"+ i +"_id"].ToString();
+                        var tauntAction = reader["taunt_" + i + "_value"].ToString();
+                        var tauntName = reader["taunt_" + i + "_name"].ToString();
+
+                        player.TauntWheel.UpdateTauntSlot(i, tauntId, tauntAction, tauntName);
+
+                        var shoutId = reader["shout_" + i + "_id"].ToString();
+                        var voiceType = reader["shout_" + i + "_value"].ToString();
+                        var shoutName = reader["shout_" + i + "_name"].ToString();
+
+                        player.ShoutWheel.UpdateShoutSlot(i, shoutId, voiceType, shoutName);
+
+                    }
+                }
+
+                MPPlayers.AddPlayer(player);
             }
             catch (NpgsqlException ex)
             {

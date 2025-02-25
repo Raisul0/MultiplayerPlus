@@ -6,7 +6,7 @@ using System.Reflection;
 using TaleWorlds.MountAndBlade;
 using static TaleWorlds.MountAndBlade.GameNetwork;
 
-namespace MultiplayerPlusCommon
+namespace MultiplayerPlusServer
 {
     /// <summary>
     /// Manages the registration and deregistration of server-side message handlers.

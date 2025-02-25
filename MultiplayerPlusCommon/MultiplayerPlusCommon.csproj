@@ -68,14 +68,20 @@
     <Reference Include="TaleWorlds.ObjectSystem">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.ObjectSystem.dll</HintPath>
     </Reference>
+    <Reference Include="TaleWorlds.PlayerServices">
+      <HintPath>..\DLL's\ServerDlls\TaleWorlds.PlayerServices.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\ShoutBehavior.cs" />
     <Compile Include="Behaviors\TauntBehavior.cs" />
     <Compile Include="Constants\DBConnectionInfo.cs" />
-    <Compile Include="Constants\MPShoutWheel.cs" />
-    <Compile Include="Constants\MPTauntWheel.cs" />
-    <Compile Include="Constants\CustomAgent.cs" />
+    <Compile Include="Constants\MPPlayers.cs" />
+    <Compile Include="NetworkMessages\FromClient\GetPlayerShouts.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetPlayerShoutWheel.cs" />
+    <Compile Include="ObjectClass\MPShoutWheel.cs" />
+    <Compile Include="ObjectClass\MPTauntWheel.cs" />
+    <Compile Include="Constants\PostgresSQLQuery.cs" />
     <Compile Include="Helpers\MultiplayerPlusHelper.cs" />
     <Compile Include="Helpers\IHandlerRegister.cs" />
     <Compile Include="MPPTeamDeathMatchCommonBehavior.cs" />
@@ -89,7 +95,8 @@
     <Compile Include="NetworkMessages\FromServer\SetBoundaryZone.cs" />
     <Compile Include="NetworkMessages\FromServer\StartSpawnArmor.cs" />
     <Compile Include="NetworkMessages\FromServer\StartSpawnChest.cs" />
-    <Compile Include="ObjectClass\MPAgentBodyCosmetic.cs" />
+    <Compile Include="ObjectClass\MPAgent.cs" />
+    <Compile Include="ObjectClass\MPAgentClassCosmetic.cs" />
     <Compile Include="ObjectClass\MPShout.cs" />
     <Compile Include="ObjectClass\MPTaunt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

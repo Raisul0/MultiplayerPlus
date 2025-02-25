@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MultiplayerPlusCommon.Constants;
-using MultiplayerPlusCommon.ObjectClasses;
+using MultiplayerPlusCommon.ObjectClass;
 using TaleWorlds.MountAndBlade;
 
 namespace MultiplayerPlusCommon.Behaviors
@@ -36,7 +36,7 @@ namespace MultiplayerPlusCommon.Behaviors
 
         public void Read()
         {
-            Shouts = MPShoutWheel.Shouts;
+            //Shouts = MPShoutWheel.Shouts;
         }
 
 

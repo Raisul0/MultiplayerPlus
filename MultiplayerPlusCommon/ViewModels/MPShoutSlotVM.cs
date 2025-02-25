@@ -9,8 +9,9 @@ namespace MultiplayerPlusCommon.ViewModels
 {
     public class MPShoutSlotVM : ViewModel
     {
-        private int _shoutIndex;
+        private string _shoutId;
         private string _shoutName;
+        private string _shoutValue;
         private bool _isSelected;
         private readonly Action<MPShoutSlotVM> _onFocus;
 
@@ -33,18 +34,35 @@ namespace MultiplayerPlusCommon.ViewModels
         }
 
         [DataSourceProperty]
-        public int ShoutIndex
+        public string ShoutId
         {
             get
             {
-                return _shoutIndex;
+                return _shoutId;
             }
             set
             {
-                if (value != _shoutIndex)
+                if (value != _shoutId)
                 {
-                    _shoutIndex = value;
-                    OnPropertyChangedWithValue(value, "ShoutIndex");
+                    _shoutId = value;
+                    OnPropertyChangedWithValue(value, "ShoutId");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ShoutValue
+        {
+            get
+            {
+                return _shoutValue;
+            }
+            set
+            {
+                if (value != _shoutValue)
+                {
+                    _shoutValue = value;
+                    OnPropertyChangedWithValue(value, "ShoutValue");
                 }
             }
         }
@@ -72,10 +90,11 @@ namespace MultiplayerPlusCommon.ViewModels
 
 
 
-        public MPShoutSlotVM(int shoutIndex, string shoutName, Action<MPShoutSlotVM> onFocus)
+        public MPShoutSlotVM(string shoutId, string shoutName,string shoutValue,  Action<MPShoutSlotVM> onFocus)
         {
-            ShoutIndex = shoutIndex;
+            ShoutId = shoutId;
             ShoutName = shoutName;
+            ShoutValue = shoutValue;
             _onFocus = onFocus;
         }
     }

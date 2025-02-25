@@ -1,11 +1,13 @@
 ﻿using MultiplayerPlusCommon.Constants;
 using MultiplayerPlusCommon.ViewModels;
 using NetworkMessages.FromClient;
+using NetworkMessages.FromServer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
@@ -39,6 +41,11 @@ namespace MultiplayerPlusClient.CustomViews
 
         }
 
+        public bool IsVisiable()
+        {
+            return _visiable;
+        }
+
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
@@ -62,6 +69,7 @@ namespace MultiplayerPlusClient.CustomViews
 
         public void Show()
         {
+            if (!_dataSource.Populated) _dataSource.SetSlots();
             _movie = _gauntletLayer.LoadMovie(MPMovies.BannerRoyalTaunt, this._dataSource);
             MissionScreen.AddLayer(this._gauntletLayer);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(false, InputUsageMask.Invalid);
@@ -72,7 +80,6 @@ namespace MultiplayerPlusClient.CustomViews
         {
             _gauntletLayer.ReleaseMovie(_movie);
             _dataSource.ExecuteTaunt();
-
             _gauntletLayer.InputRestrictions.SetInputRestrictions(false, InputUsageMask.Invalid);
             _visiable = false;
         }
@@ -84,9 +91,17 @@ namespace MultiplayerPlusClient.CustomViews
             {
                 if (Input.IsKeyDown(TaleWorlds.InputSystem.InputKey.M))
                 {
-                    if (!_visiable)
+                    var shoutView = Mission.GetMissionBehavior<MPShoutMenuView>();
+                    if (!shoutView.IsVisiable())
                     {
-                        Show();
+                        if (!_visiable)
+                        {
+                            Show();
+                        }
+                    }
+                    else
+                    {
+                        GameNetwork.WriteMessage(new ServerMessage("Cannot open taunt wheel while shout wheel is open", false));
                     }
                 }
                 else

@@ -9,7 +9,7 @@ namespace MultiplayerPlusCommon.ViewModels
 {
     public class MPTauntSlotVM : ViewModel
     {
-        private int _tauntSlot;
+        private string _tauntId;
         private string _tauntAction;
         private string _tauntName;
         private bool _isSelected;
@@ -50,18 +50,18 @@ namespace MultiplayerPlusCommon.ViewModels
         }
 
         [DataSourceProperty]
-        public int TauntSlot
+        public string TanutId
         {
             get
             {
-                return _tauntSlot;
+                return _tauntId;
             }
             set
             {
-                if (value != _tauntSlot)
+                if (value != _tauntId)
                 {
-                    _tauntSlot = value;
-                    OnPropertyChangedWithValue(value, "TauntSlot");
+                    _tauntId = value;
+                    OnPropertyChangedWithValue(value, "TanutId");
                 }
             }
         }
@@ -89,9 +89,9 @@ namespace MultiplayerPlusCommon.ViewModels
 
 
 
-        public MPTauntSlotVM(int tauntSlot, string tauntName, string tauntAction, Action<MPTauntSlotVM> onFocus)
+        public MPTauntSlotVM(string tauntId, string tauntName, string tauntAction, Action<MPTauntSlotVM> onFocus)
         {
-            TauntSlot = tauntSlot;
+            TanutId = tauntId;
             TauntName = tauntName;
             TauntAction = tauntAction;
             _onFocus = onFocus;

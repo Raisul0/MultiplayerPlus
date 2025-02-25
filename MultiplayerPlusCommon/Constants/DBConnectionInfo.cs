@@ -8,6 +8,6 @@ namespace MultiplayerPlusCommon.Constants
 {
     public static class DBConnectionInfo
     {
-        public const string ConnectionString = "Host=db.aqkbrvsgdjgnokcgntyc.supabase.co;Database=postgres;Username=postgres;Password=QlHkBDlvEufVayPx;SSL Mode=Require;Trust Server Certificate=true";
+        public const string ConnectionString = "Host=aws-0-us-east-1.pooler.supabase.com;Port=5432;Database=postgres;Username=postgres.aqkbrvsgdjgnokcgntyc;Password=QlHkBDlvEufVayPx";
     }
 }
