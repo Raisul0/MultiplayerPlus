@@ -77,7 +77,10 @@
     <Compile Include="Behaviors\TauntBehavior.cs" />
     <Compile Include="Constants\DBConnectionInfo.cs" />
     <Compile Include="Constants\MPPlayers.cs" />
+    <Compile Include="NetworkMessages\FromClient\GetPlayerTaunts.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerShouts.cs" />
+    <Compile Include="NetworkMessages\FromClient\StartShout.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetPlayerTauntWheel.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerShoutWheel.cs" />
     <Compile Include="ObjectClass\MPShoutWheel.cs" />
     <Compile Include="ObjectClass\MPTauntWheel.cs" />
@@ -88,7 +91,6 @@
     <Compile Include="MPPTeamDeathMatchGameMode.cs" />
     <Compile Include="NetworkMessages\FromClient\GetSpawnArmor.cs" />
     <Compile Include="NetworkMessages\FromClient\StartEquipItem.cs" />
-    <Compile Include="NetworkMessages\FromClient\StartShout.cs" />
     <Compile Include="NetworkMessages\FromClient\StartTaunt.cs" />
     <Compile Include="NetworkMessages\FromServer\AgentShout.cs" />
     <Compile Include="NetworkMessages\FromServer\AgentShoutTextDisplay.cs" />

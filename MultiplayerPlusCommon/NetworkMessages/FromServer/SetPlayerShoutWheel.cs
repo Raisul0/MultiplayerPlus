@@ -13,7 +13,7 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromServer
         public string Shout1Name { get; private set; }
         public string Shout2Id { get; private set; }
         public string Shout2Name { get; private set; }
-        public MPShoutWheel ShoutWheel { get; private set; } = new MPShoutWheel();
+        public MPShoutWheel ShoutWheel { get; private set; }
         public SetPlayerShoutWheel() { 
         }
 
@@ -41,8 +41,10 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromServer
             this.Shout2Id = ReadStringFromPacket(ref bufferReadValid);
             this.Shout2Name = ReadStringFromPacket(ref bufferReadValid);
 
-            ShoutWheel.UpdateShoutSlot(1, Shout1Id, Shout1Name, "");
-            ShoutWheel.UpdateShoutSlot(2, Shout2Id, Shout2Name, "");
+            ShoutWheel = new MPShoutWheel();
+
+            ShoutWheel.UpdateShoutSlot(1, Shout1Id,"", Shout1Name);
+            ShoutWheel.UpdateShoutSlot(2, Shout2Id,"", Shout2Name);
 
             return bufferReadValid;
         }

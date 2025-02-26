@@ -45,29 +45,19 @@ namespace MultiplayerPlusCommon.ViewModels
             if (GameNetwork.IsClient)
             {
                 GameNetwork.BeginModuleEventAsClient();
-                GameNetwork.WriteMessage(new GetPlayerShouts(GameNetwork.MyPeer.UserName));
+                GameNetwork.WriteMessage(new GetPlayerTaunts(GameNetwork.MyPeer.UserName));
                 GameNetwork.EndModuleEventAsClient();
             }
         }
-        private MBBindingList<MPTauntSlotVM> PopulateTauntSlots()
+        public void PopulateTauntSlots(List<MPTaunt> taunts)
         {
             var _tauntSlots = new MBBindingList<MPTauntSlotVM>();
-            var player = MPPlayers.GetMPAgentFromUserName(GameNetwork.MyPeer.UserName);
-            List<MPTaunt> taunts;
-            if(player != null)
-            {
-                taunts = player.TauntWheel.Taunts;
-            }
-            else
-            {
-                taunts = new MPTauntWheel().Taunts;
-            }
             foreach (var taunt in taunts)
             {
                 _tauntSlots.Add(new MPTauntSlotVM(taunt.TauntId, taunt.TauntName,taunt.TauntAction, OnSlotFocused));
             }
-
-            return _tauntSlots;
+            Populated = true;
+            TauntSlots = _tauntSlots;
         }
 
         private void OnSlotFocused(MPTauntSlotVM tauntSlot)
@@ -84,7 +74,7 @@ namespace MultiplayerPlusCommon.ViewModels
                 if (GameNetwork.IsClient)
                 {
                     GameNetwork.BeginModuleEventAsClient();
-                    GameNetwork.WriteMessage(new StartTaunt(tauntId, GameNetwork.MyPeer));
+                    GameNetwork.WriteMessage(new StartTaunt(tauntId));
                     GameNetwork.EndModuleEventAsClient();
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using MultiplayerPlusCommon.Constants;
+using MultiplayerPlusCommon.ObjectClass;
 using MultiplayerPlusCommon.ViewModels;
 using NetworkMessages.FromClient;
 using NetworkMessages.FromServer;
@@ -44,6 +45,11 @@ namespace MultiplayerPlusClient.CustomViews
         public bool IsVisiable()
         {
             return _visiable;
+        }
+
+        public void UpdateTauntSlots(List<MPTaunt> taunts)
+        {
+            this._dataSource.PopulateTauntSlots(taunts);
         }
 
         public override void OnBehaviorInitialize()

@@ -49,7 +49,7 @@ namespace MultiplayerPlusCommon.ViewModels
             }
         }
 
-        public MBBindingList<MPShoutSlotVM> PopulateShoutSlots(List<MPShout> shouts)
+        public void PopulateShoutSlots(List<MPShout> shouts)
         {
             var _shoutSlots = new MBBindingList<MPShoutSlotVM>();
             foreach (var shout in shouts)
@@ -57,7 +57,7 @@ namespace MultiplayerPlusCommon.ViewModels
                 _shoutSlots.Add(new MPShoutSlotVM(shout.ShoutId, shout.ShoutName, shout.VoiceType, OnSlotFocused));
             }
             Populated = true;
-            return _shoutSlots;
+            ShoutSlots = _shoutSlots;
         }
 
         private void OnSlotFocused(MPShoutSlotVM shoutSlot)
@@ -69,13 +69,12 @@ namespace MultiplayerPlusCommon.ViewModels
         {
             if (_selectedSlot != null)
             {
-
                 var shoutId = _selectedSlot.ShoutId;
 
                 if (GameNetwork.IsClient)
                 {
                     GameNetwork.BeginModuleEventAsClient();
-                    GameNetwork.WriteMessage(new StartShout(shoutId, Agent.Main.Index, GameNetwork.MyPeer));
+                    GameNetwork.WriteMessage(new StartShout(shoutId));
                     GameNetwork.EndModuleEventAsClient();
                 }
             }

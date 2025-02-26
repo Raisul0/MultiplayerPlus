@@ -19,14 +19,11 @@ namespace MultiplayerPlusCommon.ObjectClass
 
         public void UpdateShoutSlot(int slotId, string shoutId, string voiceType, string shoutName)
         {
-            if(!string.IsNullOrEmpty(voiceType))
-            {
-                var index = slotId - 1;
-                var shout = Shouts.ElementAt(index);
-                shout.ShoutId = shoutId;
-                shout.VoiceType = voiceType;
-                shout.ShoutName = shoutName;
-            }
+            var index = slotId - 1;
+            var shout = Shouts.ElementAt(index);
+            shout.ShoutId = shoutId;
+            shout.VoiceType = voiceType;
+            shout.ShoutName = shoutName;
         }
 
         public (string,string) GetShoutIdNameSlot(int slotId)

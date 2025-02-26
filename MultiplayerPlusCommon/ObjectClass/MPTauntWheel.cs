@@ -19,17 +19,12 @@ namespace MultiplayerPlusCommon.ObjectClass
 
         public void UpdateTauntSlot(int slotId,string tauntId,string tauntAction,string tauntName,string soundEventName="")
         {
-
-            if (!string.IsNullOrEmpty(tauntAction))
-            {
-                var index = slotId - 1;
-                var taunt = Taunts.ElementAt(index);
-                taunt.TauntId = tauntId;
-                taunt.TauntAction = tauntAction;
-                taunt.TauntName = tauntName;
-                taunt.SoundEventName = soundEventName;
-            }
-
+            var index = slotId - 1;
+            var taunt = Taunts.ElementAt(index);
+            taunt.TauntId = tauntId;
+            taunt.TauntAction = tauntAction;
+            taunt.TauntName = tauntName;
+            taunt.SoundEventName = soundEventName;
         }
 
         public (string, string) GetTauntIdNameSlot(int slotId)

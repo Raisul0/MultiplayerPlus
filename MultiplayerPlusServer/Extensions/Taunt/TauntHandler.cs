@@ -23,9 +23,7 @@ namespace MultiplayerPlusServer.Extensions.Taunt
 
         public bool UseTaunt(NetworkCommunicator networkPeer, StartTaunt baseMessage)
         {
-            var peer = baseMessage.Player;
             var tauntId = baseMessage.TauntId;
-
             var player = MPPlayers.GetMPAgentFromPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString());
 
             if(player != null)
