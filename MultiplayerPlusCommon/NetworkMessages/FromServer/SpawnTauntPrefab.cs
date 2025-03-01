@@ -7,17 +7,19 @@ using TaleWorlds.ObjectSystem;
 namespace MultiplayerPlusCommon.NetworkMessages.FromServer
 {
     [DefineGameNetworkMessageTypeForMod(GameNetworkMessageSendType.FromServer)]
-    public sealed class StartSpawnArmor : GameNetworkMessage
+    public sealed class SpawnTauntPrefab : GameNetworkMessage
     {
-        public ItemObject Armor { get; set; }
+        public string PrefabName { get; set; }
+        public string SoundEventName { get; set; }
+        
         public MatrixFrame SpawnLocation { get; set; }
-
-        public StartSpawnArmor()
+        public SpawnTauntPrefab()
         {
 
         }
-        public StartSpawnArmor(ItemObject armor,MatrixFrame spawnLocation) {
-            Armor = armor;
+        public SpawnTauntPrefab(string prefabName,string soundEventName, MatrixFrame spawnLocation) {
+            PrefabName = prefabName;
+            SoundEventName = soundEventName;
             SpawnLocation = spawnLocation;
         }
         protected override MultiplayerMessageFilter OnGetLogFilter()
@@ -27,20 +29,22 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromServer
 
         protected override string OnGetLogFormat()
         {
-            return "Checking";
+            return "SpawnTauntPrefab  : PrefabName : "+ PrefabName + " , SoundEventName :" + SoundEventName;
         }
 
         protected override bool OnRead()
         {
             bool result = true;
-            this.Armor = (ItemObject)ReadObjectReferenceFromPacket(MBObjectManager.Instance, CompressionBasic.GUIDCompressionInfo, ref result);
+            this.PrefabName = ReadStringFromPacket(ref result);
+            this.SoundEventName = ReadStringFromPacket(ref result);
             this.SpawnLocation = ReadMatrixFrameFromPacket(ref result);
             return result;
         }
 
         protected override void OnWrite()
         {
-            WriteObjectReferenceToPacket(this.Armor, CompressionBasic.GUIDCompressionInfo);
+            WriteStringToPacket(this.PrefabName);
+            WriteStringToPacket(this.SoundEventName);
             WriteMatrixFrameToPacket(this.SpawnLocation);
         }
     }

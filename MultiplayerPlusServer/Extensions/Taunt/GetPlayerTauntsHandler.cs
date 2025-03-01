@@ -25,8 +25,8 @@ namespace MultiplayerPlusServer.Extensions.Shout
 
         public bool FillTauntWheel(NetworkCommunicator networkPeer, GetPlayerTaunts baseMessage)
         {
-            var userName = baseMessage.UserName;
-            var player = MPPlayers.GetMPAgentFromUserName(userName);
+            var playerId = baseMessage.PlayerId;
+            var player = MPPlayers.GetMPAgentFromPlayerId(playerId);
 
             if(player != null)
             {

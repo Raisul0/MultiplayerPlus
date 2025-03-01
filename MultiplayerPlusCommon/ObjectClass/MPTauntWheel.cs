@@ -17,7 +17,7 @@ namespace MultiplayerPlusCommon.ObjectClass
             new MPTaunt(),
         };
 
-        public void UpdateTauntSlot(int slotId,string tauntId,string tauntAction,string tauntName,string soundEventName="")
+        public void UpdateTauntSlot(int slotId, string tauntId, string tauntAction, string tauntName, string soundEventName = "")
         {
             var index = slotId - 1;
             var taunt = Taunts.ElementAt(index);
@@ -25,6 +25,11 @@ namespace MultiplayerPlusCommon.ObjectClass
             taunt.TauntAction = tauntAction;
             taunt.TauntName = tauntName;
             taunt.SoundEventName = soundEventName;
+        }
+
+        public MPTaunt GetTauntFromId(string tauntId)
+        {
+           return Taunts.FirstOrDefault(x=>x.TauntId == tauntId) ?? new MPTaunt();
         }
 
         public (string, string) GetTauntIdNameSlot(int slotId)

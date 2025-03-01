@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MultiplayerPlusCommon.Constants;
+using MultiplayerPlusCommon.NetworkMessages.FromServer;
 using NetworkMessages.FromServer;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -157,6 +158,14 @@ namespace MultiplayerPlusServer
             MPPlayers.EquipPlayerCustomEquipment(peer.GetNetworkPeer().PlayerConnectionInfo.PlayerID.ToString(), mpheroClass.StringId, equipment);
 
             peer.ControlledAgent.UpdateSpawnEquipmentAndRefreshVisuals(equipment);
+
+            if(GameNetwork.IsServer)
+            {
+                var networkPeer = peer.GetNetworkPeer();
+                GameNetwork.BeginModuleEventAsServer(networkPeer);
+                GameNetwork.WriteMessage(new SetPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString()));
+                GameNetwork.EndModuleEventAsServer();
+            }
         }
     }
 }

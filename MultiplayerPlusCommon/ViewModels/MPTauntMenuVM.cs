@@ -45,7 +45,7 @@ namespace MultiplayerPlusCommon.ViewModels
             if (GameNetwork.IsClient)
             {
                 GameNetwork.BeginModuleEventAsClient();
-                GameNetwork.WriteMessage(new GetPlayerTaunts(GameNetwork.MyPeer.UserName));
+                GameNetwork.WriteMessage(new GetPlayerTaunts(MPActivePlayer.PlayerId));
                 GameNetwork.EndModuleEventAsClient();
             }
         }
@@ -70,6 +70,7 @@ namespace MultiplayerPlusCommon.ViewModels
             if (_selectedSlot != null) {
 
                 var tauntId = _selectedSlot.TanutId;
+                var playerId = MPActivePlayer.PlayerId;
 
                 if (GameNetwork.IsClient)
                 {

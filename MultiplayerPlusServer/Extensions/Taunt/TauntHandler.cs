@@ -2,6 +2,7 @@
 using MultiplayerPlusCommon.Constants;
 using MultiplayerPlusCommon.Helpers;
 using MultiplayerPlusCommon.NetworkMessages.FromClient;
+using MultiplayerPlusCommon.NetworkMessages.FromServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,26 @@ namespace MultiplayerPlusServer.Extensions.Taunt
 
             if(player != null)
             {
-                var tauntAction = player.TauntWheel.FindTauntAction(tauntId);
+                var taunt = player.TauntWheel.GetTauntFromId(tauntId);
+                var tauntAction = taunt.TauntAction;
+                var tauntPrefab = taunt.PrefabName;
+                var tauntSound = taunt.SoundEventName;
 
                 ActionIndexCache suitableTauntAction = ActionIndexCache.Create(tauntAction);
 
                 if (suitableTauntAction.Index >= 0)
                 {
                     var agent = networkPeer.ControlledAgent;
+                    var frame = agent.Frame;
                     agent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+
+                    if (GameNetwork.IsServer)
+                    {
+                        GameNetwork.BeginModuleEventAsServer(networkPeer);
+                        GameNetwork.WriteMessage(new SpawnTauntPrefab(tauntPrefab, tauntSound, frame));
+                        GameNetwork.EndModuleEventAsServer();
+                    }
+                    
                 }
             }
             

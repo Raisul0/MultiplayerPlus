@@ -44,7 +44,7 @@ namespace MultiplayerPlusCommon.ViewModels
             if (GameNetwork.IsClient)
             {
                 GameNetwork.BeginModuleEventAsClient();
-                GameNetwork.WriteMessage(new GetPlayerShouts(GameNetwork.MyPeer.UserName));
+                GameNetwork.WriteMessage(new GetPlayerShouts(MPActivePlayer.PlayerId));
                 GameNetwork.EndModuleEventAsClient();
             }
         }

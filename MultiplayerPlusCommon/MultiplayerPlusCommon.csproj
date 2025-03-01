@@ -76,10 +76,12 @@
     <Compile Include="Behaviors\ShoutBehavior.cs" />
     <Compile Include="Behaviors\TauntBehavior.cs" />
     <Compile Include="Constants\DBConnectionInfo.cs" />
+    <Compile Include="Constants\MPActivePlayer.cs" />
     <Compile Include="Constants\MPPlayers.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerTaunts.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerShouts.cs" />
     <Compile Include="NetworkMessages\FromClient\StartShout.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetPlayerId.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerTauntWheel.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerShoutWheel.cs" />
     <Compile Include="ObjectClass\MPShoutWheel.cs" />
@@ -95,8 +97,7 @@
     <Compile Include="NetworkMessages\FromServer\AgentShout.cs" />
     <Compile Include="NetworkMessages\FromServer\AgentShoutTextDisplay.cs" />
     <Compile Include="NetworkMessages\FromServer\SetBoundaryZone.cs" />
-    <Compile Include="NetworkMessages\FromServer\StartSpawnArmor.cs" />
-    <Compile Include="NetworkMessages\FromServer\StartSpawnChest.cs" />
+    <Compile Include="NetworkMessages\FromServer\SpawnTauntPrefab.cs" />
     <Compile Include="ObjectClass\MPAgent.cs" />
     <Compile Include="ObjectClass\MPAgentClassCosmetic.cs" />
     <Compile Include="ObjectClass\MPShout.cs" />

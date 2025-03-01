@@ -218,9 +218,11 @@
     <Compile Include="ClientAutoHandler.cs" />
     <Compile Include="CustomViews\MPShoutMenuView.cs" />
     <Compile Include="CustomViews\MPTauntMenuView.cs" />
+    <Compile Include="Extensions\PlayerInfo\SetPlayerIdHandler.cs" />
     <Compile Include="Extensions\Shout\AgentShoutTextDisplayHandler.cs" />
     <Compile Include="Extensions\Shout\SetPlayerShoutWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SetPlayerTauntWheelHandler.cs" />
+    <Compile Include="Extensions\Taunt\SpawnTauntPrefabHandler.cs" />
     <Compile Include="MPPMissionView.cs" />
     <Compile Include="MPPTeamDeathMatchMissionBehaviours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

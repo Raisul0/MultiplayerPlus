@@ -9,13 +9,13 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromClient
     [DefineGameNetworkMessageTypeForMod(GameNetworkMessageSendType.FromClient)]
     public sealed class GetPlayerTaunts : GameNetworkMessage
     {
-        public string UserName { get; set; }
+        public string PlayerId { get; set; }
         public MatrixFrame Location { get; set; }
         public GetPlayerTaunts() { 
         }
-        public GetPlayerTaunts(string userName)
+        public GetPlayerTaunts(string playerId)
         {
-            UserName = userName;
+            PlayerId = playerId;
         }
         protected override MultiplayerMessageFilter OnGetLogFilter()
         {
@@ -30,13 +30,13 @@ namespace MultiplayerPlusCommon.NetworkMessages.FromClient
         protected override bool OnRead()
         {
             bool result = true;
-            this.UserName = ReadStringFromPacket(ref result);
+            this.PlayerId = ReadStringFromPacket(ref result);
             return result;
         }
 
         protected override void OnWrite()
         {
-            WriteStringToPacket(this.UserName);
+            WriteStringToPacket(this.PlayerId);
         }
     }
 }
