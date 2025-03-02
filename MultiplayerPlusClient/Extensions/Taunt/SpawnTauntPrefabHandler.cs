@@ -1,4 +1,5 @@
-﻿using MultiplayerPlusClient.CustomViews;
+﻿using Helpers;
+using MultiplayerPlusClient.CustomViews;
 using MultiplayerPlusCommon.Helpers;
 using MultiplayerPlusCommon.NetworkMessages.FromServer;
 using System;
@@ -27,9 +28,8 @@ namespace MultiplayerPlusClient.Extensions.Taunt
 
             if (!string.IsNullOrEmpty(prefabName))
             {
-                frame.Elevate(1.5f);
-                frame.Advance(0.4f);
                 GameEntity tauntPrefab = GameEntity.Instantiate(Mission.Current.Scene, prefabName, frame);
+                SetPrefabPosition(tauntPrefab);
                 var result = RemovePrefab(tauntPrefab,5);
             }
             
@@ -46,6 +46,16 @@ namespace MultiplayerPlusClient.Extensions.Taunt
         {
             await Task.Delay(tauntDuration*1000);
             tauntPrefab.Remove(0);
+        }
+
+        public void SetPrefabPosition(GameEntity tauntPrefab)
+        {
+            var newFrame = tauntPrefab.GetGlobalFrame();
+            newFrame.Elevate(1.5f);
+            newFrame.Advance(0.3f);
+            newFrame.rotation.RotateAboutForward(0.5f);
+
+            tauntPrefab.SetGlobalFrame(newFrame);
         }
 
     }

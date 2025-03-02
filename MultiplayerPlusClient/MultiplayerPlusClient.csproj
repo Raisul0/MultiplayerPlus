@@ -10,6 +10,7 @@
     <RootNamespace>MultiplayerPlusClient</RootNamespace>
     <AssemblyName>MultiplayerPlusClient</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+	<GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -17,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Client Files\bin\Win64_Shipping_Client\</OutputPath>
+	<OutputPath>$(GameFolder)\Modules\MultiplayerPlus\bin\Win64_Shipping_Client</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

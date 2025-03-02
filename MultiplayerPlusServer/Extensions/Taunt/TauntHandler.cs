@@ -3,6 +3,7 @@ using MultiplayerPlusCommon.Constants;
 using MultiplayerPlusCommon.Helpers;
 using MultiplayerPlusCommon.NetworkMessages.FromClient;
 using MultiplayerPlusCommon.NetworkMessages.FromServer;
+using NetworkMessages.FromServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,22 @@ namespace MultiplayerPlusServer.Extensions.Taunt
                 {
                     var agent = networkPeer.ControlledAgent;
                     var frame = agent.Frame;
+
+                    var groundHeight = Mission.Current.Scene.GetGroundHeightAtPosition(frame.origin);
+                    var frameHeight = frame.origin.z;
+
+                    if (groundHeight + 0.2 < frameHeight)
+                    {
+                        SendServerMessage("Cannot perfrom Taunt while above Ground!",networkPeer);
+                        return false;
+                    }
+
+                    else if (agent.HasMount)
+                    {
+                        SendServerMessage("Cannot perfrom Taunt while mounted!", networkPeer);
+                        return false;
+                    }
+
                     agent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
 
                     if (GameNetwork.IsServer)
@@ -54,6 +71,16 @@ namespace MultiplayerPlusServer.Extensions.Taunt
             
 
             return true;
+        }
+
+        public void SendServerMessage(string message,NetworkCommunicator peer)
+        {
+            if (GameNetwork.IsServer)
+            {
+                GameNetwork.BeginModuleEventAsServer(peer);
+                GameNetwork.WriteMessage(new ServerMessage(message, false));
+                GameNetwork.EndModuleEventAsServer();
+            }
         }
     }
 }
