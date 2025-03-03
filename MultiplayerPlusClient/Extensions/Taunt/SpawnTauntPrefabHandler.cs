@@ -22,15 +22,15 @@ namespace MultiplayerPlusClient.Extensions.Taunt
 
         public void SpawnTauntPrefabWithSound(SpawnTauntPrefab baseMessage)
         {
-            var prefabName = "musical_instrument_vielle"; //baseMessage.PrefabName;
-            var soundEventName = "taunt/goryeo_style";  //baseMessage.SoundEventName; 
+            var prefabName = "musical_instrument_flute"; //baseMessage.PrefabName;
+            var soundEventName = "taunt/sound/violin";  //baseMessage.SoundEventName; 
             var frame = baseMessage.SpawnLocation;
 
             if (!string.IsNullOrEmpty(prefabName))
             {
                 GameEntity tauntPrefab = GameEntity.Instantiate(Mission.Current.Scene, prefabName, frame);
                 SetPrefabPosition(tauntPrefab);
-                var result = RemovePrefab(tauntPrefab,5);
+                var result = RemovePrefab(tauntPrefab,10);
             }
             
             if(!string.IsNullOrEmpty(soundEventName))

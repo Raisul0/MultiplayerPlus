@@ -61,9 +61,9 @@ namespace MultiplayerPlusServer.Extensions.Taunt
 
                     if (GameNetwork.IsServer)
                     {
-                        GameNetwork.BeginModuleEventAsServer(networkPeer);
+                        GameNetwork.BeginBroadcastModuleEvent();
                         GameNetwork.WriteMessage(new SpawnTauntPrefab(tauntPrefab, tauntSound, frame));
-                        GameNetwork.EndModuleEventAsServer();
+                        GameNetwork.EndBroadcastModuleEvent(GameNetwork.EventBroadcastFlags.None);
                     }
                     
                 }
