@@ -59,7 +59,7 @@ namespace MultiplayerPlusServer.Extensions.Taunt
 
                     agent.SetActionChannel(1, suitableTauntAction, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
 
-                    if (GameNetwork.IsServer)
+                    if (GameNetwork.IsServer && !string.IsNullOrEmpty(tauntPrefab))
                     {
                         GameNetwork.BeginBroadcastModuleEvent();
                         GameNetwork.WriteMessage(new SpawnTauntPrefab(tauntPrefab, tauntSound, frame));

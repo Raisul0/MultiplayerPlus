@@ -15,6 +15,10 @@ namespace MultiplayerPlusCommon.ObjectClass
             new MPTaunt(),
             new MPTaunt(),
             new MPTaunt(),
+            new MPTaunt(),
+            new MPTaunt(),
+            new MPTaunt(),
+            new MPTaunt(),
         };
 
         public void UpdateTauntSlot(int slotId, string tauntId, string tauntAction, string tauntName, string soundEventName = "")
