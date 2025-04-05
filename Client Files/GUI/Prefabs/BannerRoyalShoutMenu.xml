@@ -48,7 +48,7 @@
 								  <Children>
 									  <ButtonWidget VisualDefinition="CircleBackground" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="74" HorizontalAlignment="Center" VerticalAlignment="Center" Command.Click="ExecuteAction" IsSelected="@IsSelected" UpdateChildrenStates="true" Brush="Mission.Radial.Item.Background">
 										  <Children>
-											  <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="100" HorizontalAlignment="Center" VerticalAlignment="Center" Command.Click="ExecuteAction" Brush="Mission.DropCircle.ItemText" Text="@ShoutName" />
+											  <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" Brush="Mission.CheerBark.Item.Text" HorizontalAlignment="Center" VerticalAlignment="Center" Command.Click="ExecuteAction" Text="@ShoutName" />
 										  </Children>
 									  </ButtonWidget>
 								  </Children>

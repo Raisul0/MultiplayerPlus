@@ -15,6 +15,10 @@ namespace MultiplayerPlusCommon.ObjectClass
             new MPShout(),
             new MPShout(),
             new MPShout(),
+            new MPShout(),
+            new MPShout(),
+            new MPShout(),
+            new MPShout(),
         };
 
         public void UpdateShoutSlot(int slotId, string shoutId, string voiceType, string shoutName)
