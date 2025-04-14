@@ -41,5 +41,43 @@ namespace MultiplayerPlus.Client
             };
             return missionViews.ToArray();
         }
+
+        [ViewMethod("MPPSkirmish")]
+        public static MissionView[] OpenMPPSkirmishMission(Mission mission)
+        {
+            List<MissionView> missionViews = new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerFactionBanVoteUIHandler(),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("MPPSkirmish"),
+                MultiplayerViewCreator.CreateMultiplayerMissionOrderUIHandler(mission),
+                ViewCreator.CreateMissionAgentLabelUIHandler(mission),
+                ViewCreator.CreateOrderTroopPlacerView(mission),
+                MultiplayerViewCreator.CreateMultiplayerTeamSelectUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, false),
+                MultiplayerViewCreator.CreateMultiplayerEndOfRoundUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView(),
+                MultiplayerViewCreator.CreateMultiplayerMissionHUDExtensionUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionDeathCardUIHandler(null),
+                MultiplayerViewCreator.CreateMultiplayerMissionVoiceChatUIHandler(),
+                MultiplayerViewCreator.CreateMissionFlagMarkerUIHandler(),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView(),
+                new SpectatorCameraView()
+            };
+            return missionViews.ToArray();
+        }
     }
 }

@@ -1,4 +1,7 @@
-using MultiplayerPlusCommon;
+using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
+using MultiplayerPlusServer.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using Debug = TaleWorlds.Library.Debug;
@@ -23,8 +26,14 @@ public class SubModule : MBSubModuleBase
     public override void OnMultiplayerGameStart(Game game, object starterObject)
     {
         Debug.Print("** Mulitiplayer Plus, OnMultiplayerGameStart **");
+
+        //TeamDeathMatch 
         MPPTeamDeathMatchGameMode.OnStartMultiplayerGame += MPPTeamDeathMatchMissionBehaviours.OpenMPPTeamDeathMatchServerBehaviours;
         TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPTeamDeathMatchGameMode("MPPTeamDeathMatch"));
+
+        //Skirmish
+        MPPSkirmishGameMode.OnStartMultiplayerGame += MPPSkirmishMissionBehaviours.OpenMPPSkirmishMissionServerBehaviours;
+        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPSkirmishGameMode("MPPSkirmish"));
 
     }
     public override void OnBeforeMissionBehaviorInitialize(Mission mission)
