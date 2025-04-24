@@ -24,6 +24,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>..\DLL's\ThirddParty\Harmony\0Harmony.dll</HintPath>
+      </Reference>
       <Reference Include="TaleWorlds.AchievementSystem">
         <HintPath>..\DLL's\ServerDlls\TaleWorlds.AchievementSystem.dll</HintPath>
       </Reference>

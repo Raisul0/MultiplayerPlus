@@ -21,6 +21,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                         MissionLobbyComponent.CreateBehavior(),
                         new MPPSkirmishBehavior(),
                         new MultiplayerRoundController(),
+                        new MultiplayerWarmupComponent(),
                         new MissionMultiplayerGameModeFlagDominationClient(),
                         new MultiplayerTimerComponent(),
                         new SpawnComponent(new MPPSkirmishSpawnFrameBehavior(), new MPPSkirmishSpawningBehavior()),
@@ -40,7 +41,6 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                         new EquipmentControllerLeaveLogic(),
                         new VoiceChatHandler(),
                         new MultiplayerPreloadHelper(),
-
                     };
                 }, true, true);
 

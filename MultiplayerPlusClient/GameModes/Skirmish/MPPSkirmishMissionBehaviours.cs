@@ -25,6 +25,7 @@ namespace MultiplayerPlusClient.GameModes.Skirmish
                     new MultiplayerAchievementComponent(),
                     new MissionMultiplayerGameModeFlagDominationClient(),
                     new MultiplayerRoundComponent(),
+                    new MultiplayerWarmupComponent(),
                     new MultiplayerTimerComponent(),
                     new MultiplayerMissionAgentVisualSpawnComponent(),
                     new ConsoleMatchStartEndHandler(),

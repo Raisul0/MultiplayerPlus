@@ -10,6 +10,7 @@ namespace MultiplayerPlusCommon
 {
     public class SubModule : MBSubModuleBase
     {
+        public const string ModuleId = "MultiplayerPlusCommon";
         protected override void OnSubModuleLoad()
         {
 

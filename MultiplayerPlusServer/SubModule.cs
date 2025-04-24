@@ -1,7 +1,9 @@
+using HarmonyLib;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.GameModes.Skirmish;
 using MultiplayerPlusServer.GameModes.TeamDeathMatch;
+using MultiplayerPlusServer.Patch;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using Debug = TaleWorlds.Library.Debug;
@@ -10,9 +12,11 @@ namespace MultiplayerPlusServer;
 
 public class SubModule : MBSubModuleBase
 {
+    public const string ModuleId = "MultiplayerPlusServer";
     protected override void OnSubModuleLoad()
     {
         base.OnSubModuleLoad();
+        DirtyServerPatcher.Patch();
         Debug.Print("** Mulitiplayer Plus, OnSubModuleLoad BY RAISUL **", 0, Debug.DebugColor.Red);
         Console.WriteLine("hello_");
     }

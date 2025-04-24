@@ -1,6 +1,7 @@
 ﻿
 using MultiplayerPlusCommon.Constants;
 using MultiplayerPlusCommon.MPPLoadout;
+using MultiplayerPlusCommon.NetworkMessages.FromServer;
 using MultiplayerPlusCommon.ObjectClass;
 using NetworkMessages.FromClient;
 using NetworkMessages.FromServer;
@@ -574,9 +575,9 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                     return false;
                 }
 
-                bool flag2 = true;//base.Mission.AttackerTeam.ActiveAgents.Count > 0;
+                bool flag2 = base.Mission.AttackerTeam.ActiveAgents.Count > 0;
                 bool flag3 = base.Mission.DefenderTeam.ActiveAgents.Count > 0;
-                if (flag2 && flag3)
+                if (true)
                 {
                     return false;
                 }
@@ -909,6 +910,12 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
         {
             networkPeer.AddComponent<FlagDominationMissionRepresentative>();
             MPPLoadout.LoadMPPLoadout(networkPeer);
+            if (GameNetwork.IsServer)
+            {
+                GameNetwork.BeginModuleEventAsServer(networkPeer);
+                GameNetwork.WriteMessage(new SetPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString()));
+                GameNetwork.EndModuleEventAsServer();
+            }
         }
 
         protected override void HandleNewClientAfterSynchronized(NetworkCommunicator networkPeer)

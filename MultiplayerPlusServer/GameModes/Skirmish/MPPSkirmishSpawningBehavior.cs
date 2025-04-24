@@ -272,13 +272,13 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
 
             peer.ControlledAgent.UpdateSpawnEquipmentAndRefreshVisuals(equipment);
 
-            if(GameNetwork.IsServer)
-            {
-                var networkPeer = peer.GetNetworkPeer();
-                GameNetwork.BeginModuleEventAsServer(networkPeer);
-                GameNetwork.WriteMessage(new SetPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString()));
-                GameNetwork.EndModuleEventAsServer();
-            }
+            //if(GameNetwork.IsServer)
+            //{
+            //    var networkPeer = peer.GetNetworkPeer();
+            //    GameNetwork.BeginModuleEventAsServer(networkPeer);
+            //    GameNetwork.WriteMessage(new SetPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString()));
+            //    GameNetwork.EndModuleEventAsServer();
+            //}
         }
 
         private void BotFormationSpawned(Team team)
