@@ -8,7 +8,7 @@ namespace MultiplayerPlusCommon.Constants
 {
     public static class PostgresSQLQuery
     {
-
+        public static int NoOfColumn = 10;
         public static string SteamId = "";
 
         public static string GetPlayerClassLoadouts =
@@ -22,17 +22,11 @@ namespace MultiplayerPlusCommon.Constants
             $"where u.steam_id='";
 
         public static string GetPlayerUniversalLoadouts =
-            "select " +
-            "t1.id taunt_1_id,t1.taunt_str taunt_1_value,t1.name taunt_1_name, " +
-            "s1.id shout_1_id,s1.shout_str shout_1_value,s1.name shout_1_name,  " +
-            "t2.id taunt_2_id,t2.taunt_str taunt_2_value,t2.name taunt_2_name, " +
-            "s2.id shout_2_id,s2.shout_str shout_2_value,s2.name shout_2_name  " +
+            "select " + GetTauntColumns() + GetShoutColumns() +
             "from universal_loadouts ul  " +
-            "left join users u on ul.user_id=u.id " +
-            "left join taunts t1 on ul.taunt_1_id = t1.id " +
-            "left join shouts s1 on ul.shout_1_id = s1.id " +
-            "left join taunts t2 on ul.taunt_2_id = t2.id " +
-            "left join shouts s2 on ul.shout_2_id = s2.id " +
+            "left join users u on u.id=ul.user_id " +
+            GetTauntJoins() +
+            GetShoutJoins() +
             $"where u.steam_id='";
 
         public static string GetPlayerAllLoadouts => GetPlayerClassLoadouts + SteamId + "'; " + GetPlayerUniversalLoadouts + SteamId + "' ";
@@ -40,6 +34,59 @@ namespace MultiplayerPlusCommon.Constants
         public static void SetSteamId(string steamId)
         {
             SteamId = steamId;
+        }
+
+        public static string GetTauntColumns()
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i = 1; i <= NoOfColumn; i++)
+            {
+                sb.Append("t"+i+".id taunt_"+i+"_id ");
+                sb.Append(",");
+                sb.Append("t" + i + ".taunt_str taunt_" + i + "_value ");
+                sb.Append(",");
+                sb.Append("t" + i + ".name taunt_" + i + "_name ");
+                sb.Append(",");
+            }
+            return sb.ToString();
+        }
+
+        public static string GetShoutColumns()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 1; i <= NoOfColumn; i++)
+            {
+                sb.Append("s" + i + ".id shout_" + i + "_id ");
+                sb.Append(",");
+                sb.Append("s" + i + ".shout_str shout_" + i + "_value ");
+                sb.Append(",");
+                sb.Append("s" + i + ".name shout_" + i + "_name ");
+                sb.Append(",");
+            }
+            sb.Remove(sb.Length - 1, 1);  
+            return sb.ToString();
+        }
+        
+        public static string GetTauntJoins()
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i=1;i <= NoOfColumn; i++)
+            {
+                sb.Append("left join taunts t" + i + " on ul.taunt_" + i + "_id = t" + i + ".id ");
+            }
+
+            return sb.ToString();
+        }
+
+        public static string GetShoutJoins()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 1; i <= NoOfColumn; i++)
+            {
+                sb.Append("left join shouts s" + i + " on ul.shout_" + i + "_id = s" + i + ".id ");
+            }
+
+            return sb.ToString();
         }
     }
 }
