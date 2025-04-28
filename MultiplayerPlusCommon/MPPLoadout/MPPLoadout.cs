@@ -45,7 +45,7 @@ namespace MultiplayerPlusCommon.MPPLoadout
 
                             while (reader.Read())
                             {
-                                for (int i = 1; i <= 2; i++)
+                                for (int i = 1; i <= 10; i++)
                                 {
                                     var tauntId = reader["taunt_" + i + "_id"].ToString();
                                     var tauntAction = reader["taunt_" + i + "_value"].ToString();
@@ -61,16 +61,12 @@ namespace MultiplayerPlusCommon.MPPLoadout
 
                                 }
                             }
-
-                            MPPlayers.AddPlayer(player);
-
                         }
-
-                        
                     }
-                    
                 }
-                    
+
+                MPPlayers.AddPlayer(player);
+
             }
             catch (NpgsqlException ex)
             {

@@ -577,7 +577,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
 
                 bool flag2 = base.Mission.AttackerTeam.ActiveAgents.Count > 0;
                 bool flag3 = base.Mission.DefenderTeam.ActiveAgents.Count > 0;
-                if (true)
+                if (flag2 && flag3)
                 {
                     return false;
                 }

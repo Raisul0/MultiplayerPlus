@@ -14,7 +14,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using static TaleWorlds.MountAndBlade.SkinVoiceManager;
 
-namespace MultiplayerPlusServer.Extensions.Shout
+namespace MultiplayerPlusServer.Extensions.Taunt
 {
     public class GetPlayerTauntsHandler : IHandlerRegister
     {
