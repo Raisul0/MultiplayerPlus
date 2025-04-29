@@ -10,7 +10,7 @@
     <RootNamespace>MultiplayerPlusClient</RootNamespace>
     <AssemblyName>MultiplayerPlusClient</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-	<GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
+    <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-	<OutputPath>$(GameFolder)\Modules\MultiplayerPlus\bin\Win64_Shipping_Client</OutputPath>
+    <OutputPath>$(GameFolder)\Modules\MultiplayerPlus\bin\Win64_Shipping_Client</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -224,8 +224,9 @@
     <Compile Include="Extensions\Shout\SetPlayerShoutWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SetPlayerTauntWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SpawnTauntPrefabHandler.cs" />
+    <Compile Include="GameModes\Skirmish\MPPSkirmishMissionBehaviours.cs" />
     <Compile Include="MPPMissionView.cs" />
-    <Compile Include="MPPTeamDeathMatchMissionBehaviours.cs" />
+    <Compile Include="GameModes\TeamDeathMatch\MPPTeamDeathMatchMissionBehaviours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubModule.cs" />
   </ItemGroup>
@@ -234,6 +235,9 @@
       <Project>{50C262D8-4DBD-4517-B56E-841C76722DB5}</Project>
       <Name>MultiplayerPlusCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
