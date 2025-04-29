@@ -10,12 +10,12 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 
-namespace MultiplayerPlusServer.GameModes.Skirmish
+namespace MultiplayerPlusServer.GameModes.Battle
 {
     /// <summary>
     /// Simple spawn behavior for the Battle Royale.    
     /// </summary>
-    public class MPPSkirmishSpawningBehavior : SpawningBehaviorBase
+    public class MPPBattleSpawningBehavior : SpawningBehaviorBase
     {
         private const int EnforcedSpawnTimeInSeconds = 15;
 
@@ -25,13 +25,13 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
 
         private bool _roundInitialSpawnOver;
 
-        private MPPSkirmishBehavior _flagDominationMissionController;
+        private MPPBattleBehavior _flagDominationMissionController;
 
         private MultiplayerRoundController _roundController;
 
         private List<KeyValuePair<MissionPeer, TaleWorlds.Core.Timer>> _enforcedSpawnTimers;
 
-        public MPPSkirmishSpawningBehavior()
+        public MPPBattleSpawningBehavior()
         {
             _enforcedSpawnTimers = new List<KeyValuePair<MissionPeer, TaleWorlds.Core.Timer>>();
         }
@@ -39,7 +39,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
         public override void Initialize(SpawnComponent spawnComponent)
         {
             base.Initialize(spawnComponent);
-            _flagDominationMissionController = base.Mission.GetMissionBehavior<MPPSkirmishBehavior>();
+            _flagDominationMissionController = base.Mission.GetMissionBehavior<MPPBattleBehavior>();
             _roundController = base.Mission.GetMissionBehavior<MultiplayerRoundController>();
             _roundController.OnRoundStarted += RequestStartSpawnSession;
             _roundController.OnRoundEnding += base.RequestStopSpawnSession;

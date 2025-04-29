@@ -1,17 +1,20 @@
-﻿using MultiplayerPlusCommon.GameModes.Skirmish;
-using MultiplayerPlusServer.GameModes.TeamDeathMatch;
+﻿using MultiplayerPlusServer.GameModes.Skirmish;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Multiplayer;
 using TaleWorlds.MountAndBlade.Source.Missions;
 
-
-namespace MultiplayerPlusServer.GameModes.Skirmish
+namespace MultiplayerPlusServer.GameModes.Battle
 {
-    public static class MPPSkirmishMissionBehaviours
+    public static class MPPBattleMissionBehaviors 
     {
         [MissionMethod]
-        public static void OpenMPPSkirmishMissionServerBehaviours(string scene)
+        public static void OpenMPPBattleMissionServerBehaviours(string scene)
         {
             MissionState.OpenNew("MPPSkirmish", new MissionInitializerRecord(scene),
                 delegate (Mission missionController)
@@ -19,28 +22,26 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                     return new MissionBehavior[]
                     {
                         MissionLobbyComponent.CreateBehavior(),
-                        new MPPSkirmishBehavior(),
                         new MultiplayerRoundController(),
+                        new MPPBattleBehavior(),
                         new MultiplayerWarmupComponent(),
                         new MissionMultiplayerGameModeFlagDominationClient(),
                         new MultiplayerTimerComponent(),
-                        new SpawnComponent(new MPPSkirmishSpawnFrameBehavior(), new MPPSkirmishSpawningBehavior()),
+                        new SpawnComponent(new MPPBattleSpawnFrameBehavior(), new MPPBattleSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
                         new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
                         new MissionBoundaryPlacer(),
                         new AgentVictoryLogic(),
-                        new MissionAgentPanicHandler(),
                         new AgentHumanAILogic(),
                         new MissionBoundaryCrossingHandler(),
                         new MultiplayerPollComponent(),
                         new MultiplayerAdminComponent(),
                         new MultiplayerGameNotificationsComponent(),
                         new MissionOptionsComponent(),
-                        new MissionScoreboardComponent(new SkirmishScoreboardData()),
+                        new MissionScoreboardComponent(new BattleScoreboardData()),
                         new EquipmentControllerLeaveLogic(),
-                        new VoiceChatHandler(),
-                        new MultiplayerPreloadHelper(),
+                        new MultiplayerPreloadHelper()
                     };
                 }, true, true);
 
