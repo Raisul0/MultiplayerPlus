@@ -123,6 +123,7 @@
     <Compile Include="Constants\MPPlayers.cs" />
     <Compile Include="Constants\MPPWarmupStates.cs" />
     <Compile Include="GameModes\Battle\MPPBattleGameMode.cs" />
+    <Compile Include="GameModes\Duel\MPPDuelGameMode.cs" />
     <Compile Include="GameModes\Skirmish\MPPSkirmishGameMode.cs" />
     <Compile Include="MPPLoadout\MPPLoadout.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerTaunts.cs" />

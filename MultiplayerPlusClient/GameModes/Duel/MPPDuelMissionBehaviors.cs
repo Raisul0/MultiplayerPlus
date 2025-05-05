@@ -10,14 +10,14 @@ using TaleWorlds.MountAndBlade.Multiplayer;
 using TaleWorlds.MountAndBlade.Source.Missions;
 
 
-namespace MultiplayerPlusClient.GameModes.Battle
+namespace MultiplayerPlusClient.GameModes.Duel
 {
-    public static class MPPBattleMissionBehavious
+    public static class MPPDuelMissionBehaviors
     {
         [MissionMethod]
-        public static void OpenMPPBattleClientBehaviors(string scene)
+        public static void OpenMPPDuelClientBehaviors(string scene)
         {
-            MissionState.OpenNew("MPPBattle", new MissionInitializerRecord(scene), delegate (Mission missionController)
+            MissionState.OpenNew("MPPDuel", new MissionInitializerRecord(scene), delegate (Mission missionController)
             {
                 return new MissionBehavior[]
                 {

@@ -13,6 +13,8 @@ using TaleWorlds.MountAndBlade.Network.Messages;
 using TaleWorlds.MountAndBlade.Objects;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using MultiplayerPlusCommon.MPPLoadout;
+using MultiplayerPlusCommon.NetworkMessages.FromServer;
 
 namespace MultiplayerPlusServer.GameModes.Battle
 {
@@ -903,6 +905,13 @@ namespace MultiplayerPlusServer.GameModes.Battle
         protected override void HandleEarlyNewClientAfterLoadingFinished(NetworkCommunicator networkPeer)
         {
             networkPeer.AddComponent<FlagDominationMissionRepresentative>();
+            MPPLoadout.LoadMPPLoadout(networkPeer);
+            if (GameNetwork.IsServer)
+            {
+                GameNetwork.BeginModuleEventAsServer(networkPeer);
+                GameNetwork.WriteMessage(new SetPlayerId(networkPeer.PlayerConnectionInfo.PlayerID.ToString()));
+                GameNetwork.EndModuleEventAsServer();
+            }
         }
 
         protected override void HandleNewClientAfterSynchronized(NetworkCommunicator networkPeer)

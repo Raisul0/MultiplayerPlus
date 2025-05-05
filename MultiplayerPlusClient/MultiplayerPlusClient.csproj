@@ -224,7 +224,8 @@
     <Compile Include="Extensions\Shout\SetPlayerShoutWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SetPlayerTauntWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SpawnTauntPrefabHandler.cs" />
-    <Compile Include="GameModes\Battle\MPPBattleMissionBehavious.cs" />
+    <Compile Include="GameModes\Battle\MPPBattleMissionBehaviors.cs" />
+    <Compile Include="GameModes\Duel\MPPDuelMissionBehaviors.cs" />
     <Compile Include="GameModes\Skirmish\MPPSkirmishMissionBehaviors.cs" />
     <Compile Include="MPPMissionView.cs" />
     <Compile Include="GameModes\TeamDeathMatch\MPPTeamDeathMatchMissionBehaviors.cs" />

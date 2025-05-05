@@ -1,5 +1,6 @@
 using HarmonyLib;
 using MultiplayerPlusCommon.GameModes.Battle;
+using MultiplayerPlusCommon.GameModes.Duel;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.GameModes.Battle;
@@ -42,8 +43,12 @@ public class SubModule : MBSubModuleBase
         TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPSkirmishGameMode("MPPSkirmish"));
 
         //Battle 
-        MPPBattleGameMode.OnStartMultiplayerGame += MPPBattleMissionBehaviors.OpenMPPBattleMissionServerBehaviours;
+        MPPBattleGameMode.OnStartMultiplayerGame += MPPBattleMissionBehaviors.OpenMPPBattleMissionServerBehaviors;
         TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPBattleGameMode("MPPBattle"));
+
+        //Duel 
+        MPPDuelGameMode.OnStartMultiplayerGame += MPPDuelMissionBehaviors.OpenMPPDuelMissionServerBehaviors;
+        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("MPPDuel"));
 
     }
     public override void OnBeforeMissionBehaviorInitialize(Mission mission)

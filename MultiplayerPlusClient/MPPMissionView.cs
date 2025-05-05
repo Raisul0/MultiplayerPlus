@@ -81,7 +81,7 @@ namespace MultiplayerPlus.Client
         }
 
         [ViewMethod("MPPBattle")]
-        public static MissionView[] OpenBattle(Mission mission)
+        public static MissionView[] OpenMPPBattleMission(Mission mission)
         {
             return new List<MissionView>
             {
@@ -112,6 +112,34 @@ namespace MultiplayerPlus.Client
                 ViewCreator.CreateMissionBoundaryCrossingView(),
                 new MissionBoundaryWallView(),
                 new SpectatorCameraView()
+            }.ToArray();
+        }
+
+        [ViewMethod("MPPDuel")]
+        public static MissionView[] OpenMPPDuelMission(Mission mission)
+        {
+            return new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                MultiplayerViewCreator.CreateMultiplayerCultureSelectUIHandler(),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("Duel"),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, true),
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerDuelUI(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView(),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView()
             }.ToArray();
         }
     }
