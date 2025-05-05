@@ -1,9 +1,13 @@
 using HarmonyLib;
 using MultiplayerPlusCommon.GameModes.Battle;
 using MultiplayerPlusCommon.GameModes.Duel;
+using MultiplayerPlusCommon.GameModes.FreeForAll;
+using MultiplayerPlusCommon.GameModes.Siege;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.GameModes.Battle;
+using MultiplayerPlusServer.GameModes.FreeForAll;
+using MultiplayerPlusServer.GameModes.Siege;
 using MultiplayerPlusServer.GameModes.Skirmish;
 using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.Patch;
@@ -49,6 +53,14 @@ public class SubModule : MBSubModuleBase
         //Duel 
         MPPDuelGameMode.OnStartMultiplayerGame += MPPDuelMissionBehaviors.OpenMPPDuelMissionServerBehaviors;
         TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("MPPDuel"));
+
+        //Siege 
+        MPPSiegeGameMode.OnStartMultiplayerGame += MPPSiegeMissionBehaviors.OpenMPPSiegeMissionServerBehaviors;
+        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPSiegeGameMode("MPPSiege"));
+
+        //Free For All 
+        MPPFreeForAllGameMode.OnStartMultiplayerGame += MPPFreeForAllMissionBehaviors.OpenMPPFreeForAllMissionServerBehaviors;
+        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPFreeForAllGameMode("MPPFreeForAll"));
 
     }
     public override void OnBeforeMissionBehaviorInitialize(Mission mission)
