@@ -8,10 +8,10 @@ using TaleWorlds.MountAndBlade.Source.Missions;
 
 namespace MultiplayerPlusServer.GameModes.Skirmish
 {
-    public static class MPPSkirmishMissionBehaviours
+    public static class MPPSkirmishMissionBehaviors
     {
         [MissionMethod]
-        public static void OpenMPPSkirmishMissionServerBehaviours(string scene)
+        public static void OpenMPPSkirmishMissionServerBehaviors(string scene)
         {
             MissionState.OpenNew("MPPSkirmish", new MissionInitializerRecord(scene),
                 delegate (Mission missionController)

@@ -1,30 +1,30 @@
-﻿using MultiplayerPlusCommon.Behaviors;
+﻿using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Duel;
+using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Multiplayer;
 using TaleWorlds.MountAndBlade.Source.Missions;
 
 
-namespace MultiplayerPlusServer.GameModes.TeamDeathMatch
+namespace MultiplayerPlusServer.GameModes.Skirmish
 {
-    public static class MPPTeamDeathMatchMissionBehaviours
+    public static class MPPDuelMissionBehaviors
     {
         [MissionMethod]
-        public static void OpenMPPTeamDeathMatchServerBehaviours(string scene)
+        public static void OpenMPPDuelMissionServerBehaviors(string scene)
         {
-            MissionState.OpenNew("MPPTeamDeathMatch", new MissionInitializerRecord(scene),
-                delegate(Mission missionController)
+            MissionState.OpenNew("MPPDuel", new MissionInitializerRecord(scene),
+                delegate (Mission missionController)
                 {
                     return new MissionBehavior[]
                     {
-
                         MissionLobbyComponent.CreateBehavior(),
-                        new MPPTeamDeathMatchBehavior(),
-                        new MissionMultiplayerTeamDeathmatchClient(),
+                        new MissionMultiplayerDuel(),
+                        new MissionMultiplayerGameModeDuelClient(),
                         new MultiplayerTimerComponent(),
-                        new SpawnComponent(new MPPTeamDeathMatchSpawnFrameBehavior(), new MPPTeamDeathMatchSpawningBehavior()),
+                        new SpawnComponent(new MPPDuelSpawnFrameBehavior(), new MPPDuelSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
-                        new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
                         new MissionBoundaryPlacer(),
                         new MissionBoundaryCrossingHandler(),
@@ -32,17 +32,11 @@ namespace MultiplayerPlusServer.GameModes.TeamDeathMatch
                         new MultiplayerAdminComponent(),
                         new MultiplayerGameNotificationsComponent(),
                         new MissionOptionsComponent(),
-                        new MissionScoreboardComponent(new TDMScoreboardData()),
+                        new MissionScoreboardComponent(new DuelScoreboardData()),
                         new MissionAgentPanicHandler(),
                         new AgentHumanAILogic(),
                         new EquipmentControllerLeaveLogic(),
-                        new MultiplayerPreloadHelper(),
-
-                        //Custom Behaviors
-
-                        new TauntBehavior(),
-                        new ShoutBehavior()
-
+                        new MultiplayerPreloadHelper()
                     };
                 }, true, true);
 

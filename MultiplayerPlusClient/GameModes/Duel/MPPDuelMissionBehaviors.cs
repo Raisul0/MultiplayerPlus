@@ -2,6 +2,7 @@
 using System.Linq;
 using MultiplayerPlusCommon;
 using MultiplayerPlusCommon.Behaviors;
+using MultiplayerPlusCommon.GameModes.Skirmish;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
@@ -9,21 +10,21 @@ using TaleWorlds.MountAndBlade.Multiplayer;
 using TaleWorlds.MountAndBlade.Source.Missions;
 
 
-namespace MultiplayerPlusClient.GameModes.TeamDeathMatch
+namespace MultiplayerPlusClient.GameModes.Duel
 {
-    public static class MPPTeamDeathMatchMissionBehaviours
+    public static class MPPDuelMissionBehaviors
     {
         [MissionMethod]
-        public static void OpenMPPTeamDeathMatchClientBehaviours(string scene)
+        public static void OpenMPPDuelClientBehaviors(string scene)
         {
-            MissionState.OpenNew("MPPTeamDeathMatch", new MissionInitializerRecord(scene), delegate (Mission missionController)
+            MissionState.OpenNew("MPPDuel", new MissionInitializerRecord(scene), delegate (Mission missionController)
             {
                 return new MissionBehavior[]
                 {
-
-					MissionLobbyComponent.CreateBehavior(),
-                    new MissionMultiplayerTeamDeathmatchClient(),
-                    new MultiplayerAchievementComponent(),
+                    MissionLobbyComponent.CreateBehavior(),
+                    new MultiplayerRoundComponent(),
+                    new MultiplayerWarmupComponent(),
+                    new MissionMultiplayerGameModeFlagDominationClient(),
                     new MultiplayerTimerComponent(),
                     new MultiplayerMissionAgentVisualSpawnComponent(),
                     new ConsoleMatchStartEndHandler(),
@@ -36,13 +37,10 @@ namespace MultiplayerPlusClient.GameModes.TeamDeathMatch
                     new MultiplayerAdminComponent(),
                     new MultiplayerGameNotificationsComponent(),
                     new MissionOptionsComponent(),
-                    new MissionScoreboardComponent(new TDMScoreboardData()),
+                    new MissionScoreboardComponent(new BattleScoreboardData()),
                     MissionMatchHistoryComponent.CreateIfConditionsAreMet(),
                     new EquipmentControllerLeaveLogic(),
-                    new MissionRecentPlayersComponent(),
-                    new MultiplayerPreloadHelper(),
-                    new TauntBehavior(),
-                    new ShoutBehavior()
+                    new MultiplayerPreloadHelper()
 
                 };
             }, true, true);

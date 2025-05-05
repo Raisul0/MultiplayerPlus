@@ -1,5 +1,9 @@
+using MultiplayerPlusClient.GameModes.Battle;
+using MultiplayerPlusClient.GameModes.Duel;
 using MultiplayerPlusClient.GameModes.Skirmish;
 using MultiplayerPlusClient.GameModes.TeamDeathMatch;
+using MultiplayerPlusCommon.GameModes.Battle;
+using MultiplayerPlusCommon.GameModes.Duel;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
 using TaleWorlds.Core;
@@ -16,16 +20,24 @@ namespace MultiplayerPlusClient
         }
         public override void OnMultiplayerGameStart(Game game, object starterObject)
         {
-            InformationManager.DisplayMessage(new InformationMessage("** Multiplayer Plus, Team Death Match Game Start Loading..."));
-            TaleWorlds.Library.Debug.Print("** Multiplayer Plus, Team Death Match Game Start Loading...");
+            InformationManager.DisplayMessage(new InformationMessage("** Multiplayer Plus, Mod Loading..."));
+            TaleWorlds.Library.Debug.Print("** Multiplayer Plus, Mod Loading...");
 
             //TeamDeathMatch 
-            MPPTeamDeathMatchGameMode.OnStartMultiplayerGame += MPPTeamDeathMatchMissionBehaviours.OpenMPPTeamDeathMatchClientBehaviours;
+            MPPTeamDeathMatchGameMode.OnStartMultiplayerGame += MPPTeamDeathMatchMissionBehaviors.OpenMPPTeamDeathMatchClientBehaviors;
             TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPTeamDeathMatchGameMode("MPPTeamDeathMatch"));
 
             //Skirmish 
-            MPPSkirmishGameMode.OnStartMultiplayerGame += MPPSkirmishMissionBehaviours.OpenMPPSkirmishClientBehaviours;
+            MPPSkirmishGameMode.OnStartMultiplayerGame += MPPSkirmishMissionBehaviors.OpenMPPSkirmishClientBehaviors;
             TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPSkirmishGameMode("MPPSkirmish"));
+
+            //Battle 
+            MPPBattleGameMode.OnStartMultiplayerGame += MPPBattleMissionBehaviors.OpenMPPBattleClientBehaviors;
+            TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPBattleGameMode("MPPBattle"));
+
+            //Duel 
+            MPPDuelGameMode.OnStartMultiplayerGame += MPPDuelMissionBehaviors.OpenMPPDuelClientBehaviors;
+            TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("MPPDuel"));
         }
         protected override void OnSubModuleLoad()
         {

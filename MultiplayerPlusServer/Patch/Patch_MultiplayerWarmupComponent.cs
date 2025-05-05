@@ -1,4 +1,6 @@
 ﻿using HarmonyLib;
+using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Battle;
 using MultiplayerPlusServer.GameModes.Skirmish;
 using System;
 using System.Collections.Generic;
@@ -81,8 +83,18 @@ namespace MultiplayerPlusServer.Patch
             gameMode.MultiplayerTeamSelectComponent.BalanceTeams();
             gameMode.SpawnComponent.SpawningBehavior.Clear();
 
-            Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPSkirmishSpawnFrameBehavior());
-            Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPSkirmishSpawningBehavior());
+            if(gameMode is MPPSkirmishBehavior)
+            {
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPSkirmishSpawnFrameBehavior());
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPSkirmishSpawningBehavior());
+            }
+            else if(gameMode is MPPBattleBehavior)
+            {
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPBattleSpawnFrameBehavior());
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPBattleSpawningBehavior());
+            }
+
+
 
             //if (!__instance.CanMatchStartAfterWarmup())
             //{

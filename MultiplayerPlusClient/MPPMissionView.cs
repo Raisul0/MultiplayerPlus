@@ -21,7 +21,7 @@ namespace MultiplayerPlus.Client
                 ViewCreator.CreateMissionAgentStatusUIHandler(mission),
                 ViewCreator.CreateMissionMainAgentEquipmentController(mission),
                 ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
-                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("MPPTeamDeathMatch"),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("TeamDeathMatch"),
                 MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, false),
                 MultiplayerViewCreator.CreateMultiplayerEndOfRoundUIHandler(),
                 MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
@@ -55,7 +55,7 @@ namespace MultiplayerPlus.Client
                 MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
                 ViewCreator.CreateMissionMainAgentEquipmentController(mission),
                 ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
-                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("MPPSkirmish"),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("Skirmish"),
                 MultiplayerViewCreator.CreateMultiplayerMissionOrderUIHandler(mission),
                 ViewCreator.CreateMissionAgentLabelUIHandler(mission),
                 ViewCreator.CreateOrderTroopPlacerView(mission),
@@ -78,6 +78,69 @@ namespace MultiplayerPlus.Client
                 new SpectatorCameraView()
             };
             return missionViews.ToArray();
+        }
+
+        [ViewMethod("MPPBattle")]
+        public static MissionView[] OpenMPPBattleMission(Mission mission)
+        {
+            return new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerFactionBanVoteUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("Battle"),
+                MultiplayerViewCreator.CreateMultiplayerMissionOrderUIHandler(mission),
+                ViewCreator.CreateMissionAgentLabelUIHandler(mission),
+                ViewCreator.CreateOrderTroopPlacerView(mission),
+                MultiplayerViewCreator.CreateMultiplayerTeamSelectUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, false),
+                MultiplayerViewCreator.CreateMultiplayerEndOfRoundUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView(),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionHUDExtensionUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionDeathCardUIHandler(null),
+                MultiplayerViewCreator.CreateMissionFlagMarkerUIHandler(),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView(),
+                new SpectatorCameraView()
+            }.ToArray();
+        }
+
+        [ViewMethod("MPPDuel")]
+        public static MissionView[] OpenMPPDuelMission(Mission mission)
+        {
+            return new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                MultiplayerViewCreator.CreateMultiplayerCultureSelectUIHandler(),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("Duel"),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, true),
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerDuelUI(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView(),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView()
+            }.ToArray();
         }
     }
 }
