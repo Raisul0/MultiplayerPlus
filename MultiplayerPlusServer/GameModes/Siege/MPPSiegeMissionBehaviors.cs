@@ -20,13 +20,11 @@ namespace MultiplayerPlusServer.GameModes.Siege
                     return new MissionBehavior[]
                     {
                         MissionLobbyComponent.CreateBehavior(),
-                        new MissionMultiplayerSiege(),
-                        //new MPPSiegeBehavior(),
+                        new MPPSiegeBehavior(),
                         new MultiplayerWarmupComponent(),
                         new MissionMultiplayerSiegeClient(),
                         new MultiplayerTimerComponent(),
-                        //new SpawnComponent(new MPPSiegeSpawnFrameBehavior(), new MPPSiegeSpawningBehavior()),
-                        new SpawnComponent(new SiegeSpawnFrameBehavior(), new SiegeSpawningBehavior()),
+                        new SpawnComponent(new MPPSiegeSpawnFrameBehavior(), new MPPSiegeSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
                         new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
