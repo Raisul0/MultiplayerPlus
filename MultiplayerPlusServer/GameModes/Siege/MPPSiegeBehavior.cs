@@ -487,7 +487,7 @@ namespace MultiplayerPlusServer.GameModes.Siege
                     }
 
                     item.RemovePointAsServer();
-                    (base.SpawnComponent.SpawnFrameBehavior as SiegeSpawnFrameBehavior).OnFlagDeactivated(item);
+                    (base.SpawnComponent.SpawnFrameBehavior as MPPSiegeSpawnFrameBehavior).OnFlagDeactivated(item);
                     _gameModeSiegeClient.OnNumberOfFlagsChanged();
                     GameNetwork.BeginBroadcastModuleEvent();
                     GameNetwork.WriteMessage(new FlagDominationFlagsRemovedMessage());

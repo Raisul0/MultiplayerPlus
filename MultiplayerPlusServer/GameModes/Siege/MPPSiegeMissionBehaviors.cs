@@ -20,11 +20,13 @@ namespace MultiplayerPlusServer.GameModes.Siege
                     return new MissionBehavior[]
                     {
                         MissionLobbyComponent.CreateBehavior(),
-                        new MPPSiegeBehavior(),
+                        new MissionMultiplayerSiege(),
+                        //new MPPSiegeBehavior(),
                         new MultiplayerWarmupComponent(),
                         new MissionMultiplayerSiegeClient(),
                         new MultiplayerTimerComponent(),
-                        new SpawnComponent(new MPPSiegeSpawnFrameBehavior(), new MPPSiegeSpawningBehavior()),
+                        //new SpawnComponent(new MPPSiegeSpawnFrameBehavior(), new MPPSiegeSpawningBehavior()),
+                        new SpawnComponent(new SiegeSpawnFrameBehavior(), new SiegeSpawningBehavior()),
                         new MissionLobbyEquipmentNetworkComponent(),
                         new MultiplayerTeamSelectComponent(),
                         new MissionHardBorderPlacer(),
@@ -39,6 +41,7 @@ namespace MultiplayerPlusServer.GameModes.Siege
                         new AgentHumanAILogic(),
                         new EquipmentControllerLeaveLogic(),
                         new MultiplayerPreloadHelper()
+
                     };
                 }, true, true);
 
