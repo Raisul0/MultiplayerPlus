@@ -226,6 +226,8 @@
     <Compile Include="Extensions\Taunt\SpawnTauntPrefabHandler.cs" />
     <Compile Include="GameModes\Battle\MPPBattleMissionBehaviors.cs" />
     <Compile Include="GameModes\Duel\MPPDuelMissionBehaviors.cs" />
+    <Compile Include="GameModes\FreeForAll\MPPFreeForAllMissionBehaviors.cs" />
+    <Compile Include="GameModes\Siege\MPPSiegeMissionBehaviors.cs" />
     <Compile Include="GameModes\Skirmish\MPPSkirmishMissionBehaviors.cs" />
     <Compile Include="MPPMissionView.cs" />
     <Compile Include="GameModes\TeamDeathMatch\MPPTeamDeathMatchMissionBehaviors.cs" />

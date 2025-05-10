@@ -142,5 +142,64 @@ namespace MultiplayerPlus.Client
                 new MissionAgentContourControllerView()
             }.ToArray();
         }
+
+        [ViewMethod("MPPSiege")]
+        public static MissionView[] OpenMPPSiegeMission(Mission mission)
+        {
+            return new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("Siege"),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                ViewCreator.CreateMissionAgentLabelUIHandler(mission),
+                MultiplayerViewCreator.CreateMultiplayerTeamSelectUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, false),
+                MultiplayerViewCreator.CreateMultiplayerEndOfRoundUIHandler(),
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionHUDExtensionUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionDeathCardUIHandler(null),
+                new MissionItemContourControllerView(),
+                new MissionAgentContourControllerView(),
+                MultiplayerViewCreator.CreateMissionFlagMarkerUIHandler(),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView()
+            }.ToArray();
+        }
+
+        [ViewMethod("MPPFreeForAll")]
+        public static MissionView[] OpenMPPFreeForAllMission(Mission mission)
+        {
+            return new List<MissionView>
+            {
+                MultiplayerViewCreator.CreateMissionServerStatusUIHandler(),
+                MultiplayerViewCreator.CreateMissionMultiplayerPreloadView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerFFAView(),
+                MultiplayerViewCreator.CreateMissionKillNotificationUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                ViewCreator.CreateMissionMainAgentCheerBarkControllerView(mission),
+                MultiplayerViewCreator.CreateMissionMultiplayerEscapeMenu("FreeForAll"),
+                MultiplayerViewCreator.CreateMultiplayerEndOfBattleUIHandler(),
+                MultiplayerViewCreator.CreateMissionScoreBoardUIHandler(mission, true),
+                MultiplayerViewCreator.CreateLobbyEquipmentUIHandler(),
+                MultiplayerViewCreator.CreatePollProgressUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionHUDExtensionUIHandler(),
+                MultiplayerViewCreator.CreateMultiplayerMissionDeathCardUIHandler(null),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                MultiplayerViewCreator.CreateMultiplayerAdminPanelUIHandler(),
+                ViewCreator.CreateMissionBoundaryCrossingView(),
+                new MissionBoundaryWallView()
+            }.ToArray();
+        }
     }
 }

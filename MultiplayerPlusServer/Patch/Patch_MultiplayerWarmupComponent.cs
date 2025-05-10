@@ -1,7 +1,10 @@
 ﻿using HarmonyLib;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusServer.GameModes.Battle;
+using MultiplayerPlusServer.GameModes.FreeForAll;
+using MultiplayerPlusServer.GameModes.Siege;
 using MultiplayerPlusServer.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Warmup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,8 +96,16 @@ namespace MultiplayerPlusServer.Patch
                 Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPBattleSpawnFrameBehavior());
                 Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPBattleSpawningBehavior());
             }
-
-
+            else if (gameMode is MPPFreeForAllBehavior)
+            {
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPFFASpawnFrameBehavior());
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPWarmupSpawningBehavior());
+            }
+            else if (gameMode is MPPSiegeBehavior)
+            {
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawnFrameBehavior(new MPPSiegeSpawnFrameBehavior());
+                Mission.Current.GetMissionBehavior<SpawnComponent>().SetNewSpawningBehavior(new MPPSiegeSpawningBehavior());
+            }
 
             //if (!__instance.CanMatchStartAfterWarmup())
             //{
