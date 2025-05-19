@@ -33,6 +33,30 @@ namespace MultiplayerPlusCommon.Constants
             return Players.FirstOrDefault(x => x.UserName == userName);
         }
 
+        public static string GetMatchMVPTauntByPlayerId(string playerId)
+        {
+            var agent = GetMPAgentFromPlayerId(playerId);
+            return agent?.TauntWheel.GetMatchMVPTauntAction() ?? "";
+        }
+
+        public static string GetRoundMVPTauntByPlayerId(string playerId)
+        {
+            var agent = GetMPAgentFromPlayerId(playerId);
+            return agent?.TauntWheel.GetRoundMVPTauntAction() ?? "";
+        }
+
+        public static string GetMatchMVPTauntByUserName(string userName)
+        {
+            var agent = GetMPAgentFromUserName(userName);
+            return agent?.TauntWheel.GetMatchMVPTauntAction() ?? "";
+        }
+
+        public static string GetRoundMVPTauntByUserName(string userName)
+        {
+            var agent = GetMPAgentFromUserName(userName);
+            return agent?.TauntWheel.GetRoundMVPTauntAction() ?? "";
+        }
+
         public static Equipment EquipPlayerCustomEquipment(string playerId,string characterClass,Equipment equipment)
         {
             if (equipment != null)

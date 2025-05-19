@@ -364,6 +364,22 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection/1.0.0.0": {
+        "runtime": {
+          "TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "TaleWorlds.Core.ViewModelCollection/1.0.0.0": {
+        "runtime": {
+          "TaleWorlds.Core.ViewModelCollection.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -573,6 +589,16 @@
       "sha512": ""
     },
     "TaleWorlds.Starter.Library/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaleWorlds.Core.ViewModelCollection/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

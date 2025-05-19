@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 using MultiplayerPlusCommon.Behaviors;
 using MultiplayerPlusClient.CustomViews;
 using MultiplayerPlusCommon.Constants;
+using MultiplayerPlusCommon.ObjectClass;
 
 namespace MultiplayerPlusClient.Extensions.PlayerInfo
 {

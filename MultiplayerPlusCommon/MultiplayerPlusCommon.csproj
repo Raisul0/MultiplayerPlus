@@ -85,6 +85,9 @@
     <Reference Include="TaleWorlds.Core">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.Core.dll</HintPath>
     </Reference>
+    <Reference Include="TaleWorlds.Core.ViewModelCollection">
+      <HintPath>..\DLL's\ClientDlls\TaleWorlds.Core.ViewModelCollection.dll</HintPath>
+    </Reference>
     <Reference Include="TaleWorlds.Diamond">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.Diamond.dll</HintPath>
     </Reference>
@@ -99,6 +102,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.Library.dll</HintPath>
     </Reference>
+    <Reference Include="TaleWorlds.Localization, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL's\ServerDlls\TaleWorlds.Localization.dll</HintPath>
+    </Reference>
     <Reference Include="TaleWorlds.MountAndBlade">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.MountAndBlade.dll</HintPath>
     </Reference>
@@ -107,6 +114,9 @@
     </Reference>
     <Reference Include="TaleWorlds.MountAndBlade.Multiplayer">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.MountAndBlade.Multiplayer.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection">
+      <HintPath>..\DLL's\ServerDlls\TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection.dll</HintPath>
     </Reference>
     <Reference Include="TaleWorlds.ObjectSystem">
       <HintPath>..\DLL's\ServerDlls\TaleWorlds.ObjectSystem.dll</HintPath>
@@ -130,8 +140,10 @@
     <Compile Include="MPPLoadout\MPPLoadout.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerTaunts.cs" />
     <Compile Include="NetworkMessages\FromClient\GetPlayerShouts.cs" />
+    <Compile Include="NetworkMessages\FromClient\GetPlayerMatchMVPTaunt.cs" />
     <Compile Include="NetworkMessages\FromClient\StartShout.cs" />
     <Compile Include="NetworkMessages\FromServer\MPPSkirmishWarmupStateChange.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetMatchMVPTaunt.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerId.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerTauntWheel.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerShoutWheel.cs" />
@@ -156,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Constants\MPMovies.cs" />
+    <Compile Include="ViewModels\MPPEndOfBattleVM.cs" />
     <Compile Include="ViewModels\MPShoutMenuVM.cs" />
     <Compile Include="ViewModels\MPShoutSlotVM.cs" />
     <Compile Include="ViewModels\MPTauntMenuVM.cs" />

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
+using TaleWorlds.Diamond;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -21,6 +22,7 @@ namespace MultiplayerPlusServer.Extensions.Taunt
         public void Register(GameNetwork.NetworkMessageHandlerRegisterer reg)
         {
             reg.Register<StartTaunt>(UseTaunt);
+            reg.Register<GetPlayerMatchMVPTaunt>(GetPlayerMatchMVPTauntFromServer);
         }
 
         public bool UseTaunt(NetworkCommunicator networkPeer, StartTaunt baseMessage)
@@ -81,6 +83,22 @@ namespace MultiplayerPlusServer.Extensions.Taunt
                 GameNetwork.WriteMessage(new ServerMessage(message, false));
                 GameNetwork.EndModuleEventAsServer();
             }
+        }
+
+        public bool GetPlayerMatchMVPTauntFromServer(NetworkCommunicator peer, GetPlayerMatchMVPTaunt baseMessage)
+        {
+            var player1MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top1Username);
+            var player2MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top2Username);
+            var player3MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top3Username);
+
+            if (GameNetwork.IsServer)
+            {
+                GameNetwork.BeginBroadcastModuleEvent();
+                GameNetwork.WriteMessage(new SetMatchMVPTaunt(player1MatchMvpTaunt, player2MatchMvpTaunt, player3MatchMvpTaunt));
+                GameNetwork.EndModuleEventAsServer();
+            }
+
+            return true;
         }
     }
 }

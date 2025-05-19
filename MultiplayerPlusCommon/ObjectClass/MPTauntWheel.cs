@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,9 @@ namespace MultiplayerPlusCommon.ObjectClass
 {
     public class MPTauntWheel
     {
+        public const int MatchMVPSlot = 0;
+        public const int RoundMVPSlot = 1;
+
         public List<MPTaunt> Taunts = new List<MPTaunt>  {
             new MPTaunt(),
             new MPTaunt(),
@@ -47,6 +51,15 @@ namespace MultiplayerPlusCommon.ObjectClass
         public string FindTauntAction(string tauntId)
         {
             return Taunts.FirstOrDefault(x => x.TauntId == tauntId)?.TauntAction ?? "";
+        }
+
+        public string GetMatchMVPTauntAction()
+        {
+            return Taunts.ElementAt(MatchMVPSlot)?.TauntAction ?? "";
+        }
+        public string GetRoundMVPTauntAction()
+        {
+            return Taunts.ElementAt(RoundMVPSlot)?.TauntAction ?? "";
         }
 
     }
