@@ -22,7 +22,7 @@ namespace MultiplayerPlusServer.Extensions.Taunt
         public void Register(GameNetwork.NetworkMessageHandlerRegisterer reg)
         {
             reg.Register<StartTaunt>(UseTaunt);
-            reg.Register<GetPlayerMatchMVPTaunt>(GetPlayerMatchMVPTauntFromServer);
+            reg.Register<GetPlayerTaunts>(FillTauntWheel);
         }
 
         public bool UseTaunt(NetworkCommunicator networkPeer, StartTaunt baseMessage)
@@ -74,7 +74,6 @@ namespace MultiplayerPlusServer.Extensions.Taunt
 
             return true;
         }
-
         public void SendServerMessage(string message,NetworkCommunicator peer)
         {
             if (GameNetwork.IsServer)
@@ -85,17 +84,19 @@ namespace MultiplayerPlusServer.Extensions.Taunt
             }
         }
 
-        public bool GetPlayerMatchMVPTauntFromServer(NetworkCommunicator peer, GetPlayerMatchMVPTaunt baseMessage)
+        public bool FillTauntWheel(NetworkCommunicator networkPeer, GetPlayerTaunts baseMessage)
         {
-            var player1MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top1Username);
-            var player2MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top2Username);
-            var player3MatchMvpTaunt = MPPlayers.GetMatchMVPTauntByUserName(baseMessage.Top3Username);
+            var playerId = baseMessage.PlayerId;
+            var player = MPPlayers.GetMPAgentFromPlayerId(playerId);
 
-            if (GameNetwork.IsServer)
+            if (player != null)
             {
-                GameNetwork.BeginBroadcastModuleEvent();
-                GameNetwork.WriteMessage(new SetMatchMVPTaunt(player1MatchMvpTaunt, player2MatchMvpTaunt, player3MatchMvpTaunt));
-                GameNetwork.EndModuleEventAsServer();
+                if (GameNetwork.IsServer)
+                {
+                    GameNetwork.BeginModuleEventAsServer(networkPeer);
+                    GameNetwork.WriteMessage(new SetPlayerTauntWheel(player.TauntWheel));
+                    GameNetwork.EndModuleEventAsServer();
+                }
             }
 
             return true;

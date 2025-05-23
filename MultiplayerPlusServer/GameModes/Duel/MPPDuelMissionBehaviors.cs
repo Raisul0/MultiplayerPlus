@@ -7,7 +7,7 @@ using TaleWorlds.MountAndBlade.Multiplayer;
 using TaleWorlds.MountAndBlade.Source.Missions;
 
 
-namespace MultiplayerPlusServer.GameModes.Skirmish
+namespace MultiplayerPlusServer.GameModes.Duel
 {
     public static class MPPDuelMissionBehaviors
     {
@@ -20,7 +20,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                     return new MissionBehavior[]
                     {
                         MissionLobbyComponent.CreateBehavior(),
-                        new MissionMultiplayerDuel(),
+                        new MPPDuelBehavior(),
                         new MissionMultiplayerGameModeDuelClient(),
                         new MultiplayerTimerComponent(),
                         new SpawnComponent(new MPPDuelSpawnFrameBehavior(), new MPPDuelSpawningBehavior()),

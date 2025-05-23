@@ -22,14 +22,10 @@ namespace MultiplayerPlusClient.GameModes.Duel
                 return new MissionBehavior[]
                 {
                     MissionLobbyComponent.CreateBehavior(),
-                    new MultiplayerRoundComponent(),
-                    new MultiplayerWarmupComponent(),
-                    new MissionMultiplayerGameModeFlagDominationClient(),
+                    new MissionMultiplayerGameModeDuelClient(),
+                    new MultiplayerAchievementComponent(),
                     new MultiplayerTimerComponent(),
-                    new MultiplayerMissionAgentVisualSpawnComponent(),
-                    new ConsoleMatchStartEndHandler(),
                     new MissionLobbyEquipmentNetworkComponent(),
-                    new MultiplayerTeamSelectComponent(),
                     new MissionHardBorderPlacer(),
                     new MissionBoundaryPlacer(),
                     new MissionBoundaryCrossingHandler(),
@@ -37,9 +33,10 @@ namespace MultiplayerPlusClient.GameModes.Duel
                     new MultiplayerAdminComponent(),
                     new MultiplayerGameNotificationsComponent(),
                     new MissionOptionsComponent(),
-                    new MissionScoreboardComponent(new BattleScoreboardData()),
+                    new MissionScoreboardComponent(new DuelScoreboardData()),
                     MissionMatchHistoryComponent.CreateIfConditionsAreMet(),
                     new EquipmentControllerLeaveLogic(),
+                    new MissionRecentPlayersComponent(),
                     new MultiplayerPreloadHelper()
 
                 };

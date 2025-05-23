@@ -143,7 +143,8 @@
     <Compile Include="NetworkMessages\FromClient\GetPlayerMatchMVPTaunt.cs" />
     <Compile Include="NetworkMessages\FromClient\StartShout.cs" />
     <Compile Include="NetworkMessages\FromServer\MPPSkirmishWarmupStateChange.cs" />
-    <Compile Include="NetworkMessages\FromServer\SetMatchMVPTaunt.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetRoundMVPCustomization.cs" />
+    <Compile Include="NetworkMessages\FromServer\SetMatchMVPCustomization.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerId.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerTauntWheel.cs" />
     <Compile Include="NetworkMessages\FromServer\SetPlayerShoutWheel.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Constants\MPMovies.cs" />
     <Compile Include="ViewModels\MPPEndOfBattleVM.cs" />
+    <Compile Include="ViewModels\MPPEndOfRoundVM.cs" />
     <Compile Include="ViewModels\MPShoutMenuVM.cs" />
     <Compile Include="ViewModels\MPShoutSlotVM.cs" />
     <Compile Include="ViewModels\MPTauntMenuVM.cs" />

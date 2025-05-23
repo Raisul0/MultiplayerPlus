@@ -48,6 +48,10 @@ namespace MultiplayerPlusCommon.Constants
                 sb.Append("t" + i + ".name taunt_" + i + "_name ");
                 sb.Append(",");
             }
+
+            sb.Append("tmvpg.id mvp_game_taunt_id,tmvpg.taunt_str mvp_game_taunt_value,tmvpg.name mvp_game_taunt_name,");
+            sb.Append("tmvpr.id mvp_round_taunt_id,tmvpr.taunt_str mvp_round_taunt_value,tmvpr.name mvp_round_taunt_name,");
+
             return sb.ToString();
         }
 
@@ -74,6 +78,9 @@ namespace MultiplayerPlusCommon.Constants
             {
                 sb.Append("left join taunts t" + i + " on ul.taunt_" + i + "_id = t" + i + ".id ");
             }
+
+            sb.Append("left join taunts tmvpg on ul.mvp_taunt_game=tmvpg.id ");
+            sb.Append("left join taunts tmvpr on ul.mvp_taunt_game=tmvpr.id ");
 
             return sb.ToString();
         }

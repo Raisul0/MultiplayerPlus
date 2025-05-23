@@ -3,7 +3,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace MultiplayerPlusServer.GameModes.Skirmish
+namespace MultiplayerPlusServer.GameModes.Duel
 {
     public class MPPDuelSpawnFrameBehavior : SpawnFrameBehaviorBase
     {

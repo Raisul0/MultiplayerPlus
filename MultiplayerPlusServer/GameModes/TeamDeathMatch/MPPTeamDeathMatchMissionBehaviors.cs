@@ -1,4 +1,5 @@
 ﻿using MultiplayerPlusCommon.Behaviors;
+using MultiplayerPlusServer.GameModes.Common;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Multiplayer;
@@ -18,7 +19,7 @@ namespace MultiplayerPlusServer.GameModes.TeamDeathMatch
                     return new MissionBehavior[]
                     {
 
-                        MissionLobbyComponent.CreateBehavior(),
+                        new MPPLobbyComponent(),
                         new MPPTeamDeathMatchBehavior(),
                         new MissionMultiplayerTeamDeathmatchClient(),
                         new MultiplayerTimerComponent(),

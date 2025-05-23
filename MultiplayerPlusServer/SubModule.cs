@@ -6,6 +6,7 @@ using MultiplayerPlusCommon.GameModes.Siege;
 using MultiplayerPlusCommon.GameModes.Skirmish;
 using MultiplayerPlusCommon.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.GameModes.Battle;
+using MultiplayerPlusServer.GameModes.Duel;
 using MultiplayerPlusServer.GameModes.FreeForAll;
 using MultiplayerPlusServer.GameModes.Siege;
 using MultiplayerPlusServer.GameModes.Skirmish;
@@ -25,7 +26,6 @@ public class SubModule : MBSubModuleBase
         base.OnSubModuleLoad();
         DirtyServerPatcher.Patch();
         Debug.Print("** Mulitiplayer Plus, OnSubModuleLoad BY RAISUL **", 0, Debug.DebugColor.Red);
-        Console.WriteLine("hello_");
     }
     
     protected override void InitializeGameStarter(Game game, IGameStarter starterObject)

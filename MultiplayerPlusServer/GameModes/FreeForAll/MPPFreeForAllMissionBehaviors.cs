@@ -1,4 +1,5 @@
 ﻿using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Common;
 using MultiplayerPlusServer.GameModes.FreeForAll;
 using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using MultiplayerPlusServer.GameModes.Warmup;
@@ -20,7 +21,7 @@ namespace MultiplayerPlusServer.GameModes.FreeForAll
                 {
                     return new MissionBehavior[]
                     {
-                        MissionLobbyComponent.CreateBehavior(),
+                        new MPPLobbyComponent(),
                         new MPPFreeForAllBehavior(),
                         new MissionMultiplayerFFAClient(),
                         new MultiplayerTimerComponent(),

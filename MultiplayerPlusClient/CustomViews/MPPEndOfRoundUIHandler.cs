@@ -12,6 +12,8 @@ using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
+using MultiplayerPlusCommon.ViewModels;
+using TaleWorlds.Core;
 
 namespace MultiplayerPlusClient.CustomViews
 {
@@ -35,7 +37,7 @@ namespace MultiplayerPlusClient.CustomViews
             SpriteData spriteData = UIResourceManager.SpriteData;
             TwoDimensionEngineResourceContext resourceContext = UIResourceManager.ResourceContext;
             ResourceDepot uiresourceDepot = UIResourceManager.UIResourceDepot;
-            this._dataSource = new MultiplayerEndOfRoundVM(this._scoreboardComponent, this._missionLobbyComponent, this.RoundComponent);
+            this._dataSource = new MPPEndOfRoundVM(this._scoreboardComponent, this._missionLobbyComponent, this.RoundComponent);
             this._gauntletLayer = new GauntletLayer(this.ViewOrderPriority, "GauntletLayer", false);
             this._gauntletLayer.LoadMovie("MultiplayerEndOfRound", this._dataSource);
             base.MissionScreen.AddLayer(this._gauntletLayer);
@@ -92,6 +94,8 @@ namespace MultiplayerPlusClient.CustomViews
                 ScreenManager.SetSuspendLayer(this._gauntletLayer, false);
                 this._gauntletLayer.InputRestrictions.SetInputRestrictions(false, InputUsageMask.Mouse);
                 this._dataSource.IsShown = true;
+                this._dataSource.ApplyCharacterCosmetics();
+                this._dataSource.PlayCustomAnimation();
             }
         }
 
@@ -106,7 +110,49 @@ namespace MultiplayerPlusClient.CustomViews
             this._dataSource.OnMVPSelected(mvpPeer);
         }
 
-        private MultiplayerEndOfRoundVM _dataSource;
+        public void SetMVPCustomization(
+            string playerTaunt,
+            string playerEquipmentHead,
+            string playerEquipmentShoulder,
+            string playerEquipmentBody,
+            string playerEquipmentArms,
+            string playerEquipmentLegs,
+            string playerWeapon0,
+            string playerWeapon1,
+            string playerWeapon2,
+            string playerWeapon3,
+            int playerSide
+            )
+        {
+            if(BattleSideEnum.Attacker == (BattleSideEnum)playerSide)
+            {
+                this._dataSource.AttackerMVPTaunt = playerTaunt;
+                this._dataSource.AttackerEquipmentHead = playerEquipmentHead;
+                this._dataSource.AttackerEquipmentShoulder = playerEquipmentShoulder;
+                this._dataSource.AttackerEquipmentBody = playerEquipmentBody;
+                this._dataSource.AttackerEquipmentArms = playerEquipmentArms;
+                this._dataSource.AttackerEquipmentLegs = playerEquipmentLegs;
+                this._dataSource.AttackerWeapon0 = playerWeapon0;
+                this._dataSource.AttackerWeapon1 = playerWeapon1;
+                this._dataSource.AttackerWeapon2 = playerWeapon2;
+                this._dataSource.AttackerWeapon3 = playerWeapon3;
+            }
+            else if(BattleSideEnum.Defender == (BattleSideEnum)playerSide)
+            {
+                this._dataSource.DefenderMVPTaunt = playerTaunt;
+                this._dataSource.DefenderEquipmentHead = playerEquipmentHead;
+                this._dataSource.DefenderEquipmentShoulder = playerEquipmentShoulder;
+                this._dataSource.DefenderEquipmentBody = playerEquipmentBody;
+                this._dataSource.DefenderEquipmentArms = playerEquipmentArms;
+                this._dataSource.DefenderEquipmentLegs = playerEquipmentLegs;
+                this._dataSource.DefenderWeapon0 = playerWeapon0;
+                this._dataSource.DefenderWeapon1 = playerWeapon1;
+                this._dataSource.DefenderWeapon2 = playerWeapon2;
+                this._dataSource.DefenderWeapon3 = playerWeapon3;
+            }
+        }
+
+        private MPPEndOfRoundVM _dataSource;
         private GauntletLayer _gauntletLayer;
         private MissionLobbyComponent _missionLobbyComponent;
         private MissionScoreboardComponent _scoreboardComponent;

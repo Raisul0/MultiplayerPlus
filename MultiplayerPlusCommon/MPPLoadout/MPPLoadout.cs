@@ -60,6 +60,16 @@ namespace MultiplayerPlusCommon.MPPLoadout
                                     player.ShoutWheel.UpdateShoutSlot(i, shoutId, voiceType, shoutName);
 
                                 }
+
+                                player.GameMVPTaunt.TauntId = reader["mvp_game_taunt_id"].ToString();
+                                player.GameMVPTaunt.TauntAction = reader["mvp_game_taunt_value"].ToString();
+                                player.GameMVPTaunt.TauntName = reader["mvp_game_taunt_name"].ToString();
+
+                                player.RoundMVPTaunt.TauntId = reader["mvp_round_taunt_id"].ToString();
+                                player.RoundMVPTaunt.TauntAction= reader["mvp_round_taunt_value"].ToString();
+                                player.RoundMVPTaunt.TauntName = reader["mvp_round_taunt_name"].ToString();
+
+                                
                             }
                         }
                     }

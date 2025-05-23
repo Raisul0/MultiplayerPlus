@@ -80,9 +80,67 @@ namespace MultiplayerPlusCommon.ViewModels
                 thirdPlayer = peer3.Name;
             }
 
+            ApplyCharacterCosmetics();
             PlayCustomAnimation();
 
             this.IsEnabled = true;
+        }
+
+        private void ApplyCharacterCosmetics()
+        {
+            if (FirstPlacePlayer != null)
+            {
+                SetMVPEquipment(FirstPlacePlayer,EquipmentIndex.Head,  Player1EquipmentHead);
+                SetMVPEquipment(FirstPlacePlayer,EquipmentIndex.Cape,  Player1EquipmentShoulder);
+                SetMVPEquipment(FirstPlacePlayer,EquipmentIndex.Body,  Player1EquipmentBody);
+                SetMVPEquipment(FirstPlacePlayer,EquipmentIndex.Gloves,Player1EquipmentArms);
+                SetMVPEquipment(FirstPlacePlayer,EquipmentIndex.Leg,   Player1EquipmentLegs);
+                SetMVPEquipment(FirstPlacePlayer, EquipmentIndex.Weapon0, Player1Weapon0);
+                SetMVPEquipment(FirstPlacePlayer, EquipmentIndex.Weapon1, Player1Weapon1);
+                SetMVPEquipment(FirstPlacePlayer, EquipmentIndex.Weapon2, Player1Weapon2);
+                SetMVPEquipment(FirstPlacePlayer, EquipmentIndex.Weapon3, Player1Weapon3);
+                FirstPlacePlayer.Preview.HeroVisual.ExecuteEquipWeaponAtIndex(EquipmentIndex.Weapon1,false);
+            }
+
+            if (SecondPlacePlayer != null)
+            {
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Head, Player2EquipmentHead);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Cape, Player2EquipmentShoulder);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Body, Player2EquipmentBody);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Gloves, Player2EquipmentArms);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Leg, Player2EquipmentLegs);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Weapon0, Player2Weapon0);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Weapon1, Player2Weapon1);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Weapon2, Player2Weapon2);
+                SetMVPEquipment(SecondPlacePlayer, EquipmentIndex.Weapon3, Player2Weapon3);
+                SecondPlacePlayer.Preview.HeroVisual.ExecuteEquipWeaponAtIndex(EquipmentIndex.Weapon1, false);
+            }
+
+            if (ThirdPlacePlayer != null)
+            {
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Head, Player3EquipmentHead);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Cape, Player3EquipmentShoulder);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Body, Player3EquipmentBody);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Gloves, Player3EquipmentArms);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Leg, Player3EquipmentLegs);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Weapon0, Player3Weapon0);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Weapon1, Player3Weapon1);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Weapon2, Player3Weapon2);
+                SetMVPEquipment(ThirdPlacePlayer, EquipmentIndex.Weapon3, Player3Weapon3);
+                ThirdPlacePlayer.Preview.HeroVisual.ExecuteEquipWeaponAtIndex(EquipmentIndex.Weapon1, false);
+            }
+        }
+
+        private void SetMVPEquipment(MPEndOfBattlePlayerVM mvpPlayer, EquipmentIndex equipmentIndex, string itemId)
+        {
+            if (mvpPlayer != null)
+            {
+                if (!string.IsNullOrEmpty(itemId))
+                {
+                    var equipmentElement = new EquipmentElement(MultiplayerPlusHelper.GetItemObjectfromString(itemId));
+                    mvpPlayer.Preview.HeroVisual.SetEquipment(equipmentIndex, equipmentElement);
+                }
+            }
         }
 
         private void PlayCustomAnimation()
@@ -122,11 +180,6 @@ namespace MultiplayerPlusCommon.ViewModels
                 return 0;
             }
             return component.Score;
-        }
-
-        private void PerformMPPCustomization(MPEndOfBattlePlayerVM player)
-        {
-            player.Preview.HeroVisual.SetEquipment(player.Peer.ControlledAgent.SpawnEquipment);
         }
 
         [DataSourceProperty]
@@ -296,8 +349,35 @@ namespace MultiplayerPlusCommon.ViewModels
         private MPEndOfBattlePlayerVM _secondPlacePlayer;
         private MPEndOfBattlePlayerVM _thirdPlacePlayer;
 
-        public string Player1Taunt { get; set; }
-        public string Player2Taunt { get; set; }
-        public string Player3Taunt { get; set; }
+        public string Player1Taunt              { get;  set; }
+        public string Player1EquipmentHead      { get;  set; }
+        public string Player1EquipmentShoulder  { get;  set; }
+        public string Player1EquipmentBody      { get;  set; }
+        public string Player1EquipmentArms      { get;  set; }
+        public string Player1EquipmentLegs      { get;  set; }
+        public string Player1Weapon0 { get; set; }
+        public string Player1Weapon1 { get; set; }
+        public string Player1Weapon2 { get; set; }
+        public string Player1Weapon3 { get; set; }
+        public string Player2Taunt              { get;  set; }
+        public string Player2EquipmentHead      { get;  set; }
+        public string Player2EquipmentShoulder  { get;  set; }
+        public string Player2EquipmentBody      { get;  set; }
+        public string Player2EquipmentArms      { get;  set; }
+        public string Player2EquipmentLegs      { get;  set; }
+        public string Player2Weapon0 { get; set; }
+        public string Player2Weapon1 { get; set; }
+        public string Player2Weapon2 { get; set; }
+        public string Player2Weapon3 { get; set; }
+        public string Player3Taunt              { get;  set; }
+        public string Player3EquipmentHead      { get;  set; }
+        public string Player3EquipmentShoulder  { get;  set; }
+        public string Player3EquipmentBody      { get;  set; }
+        public string Player3EquipmentArms      { get;  set; }
+        public string Player3EquipmentLegs      { get;  set; }
+        public string Player3Weapon0 { get; set; }
+        public string Player3Weapon1 { get; set; }
+        public string Player3Weapon2 { get; set; }
+        public string Player3Weapon3 { get; set; }
     }
 }

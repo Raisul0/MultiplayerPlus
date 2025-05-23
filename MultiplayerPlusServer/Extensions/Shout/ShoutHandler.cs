@@ -21,6 +21,7 @@ namespace MultiplayerPlusServer.Extensions.Shout
         public void Register(GameNetwork.NetworkMessageHandlerRegisterer reg)
         {
             reg.Register<StartShout>(UseShout);
+            reg.Register<GetPlayerShouts>(FillShoutWheel);
         }
 
         public bool UseShout(NetworkCommunicator networkPeer, StartShout baseMessage)
@@ -47,6 +48,24 @@ namespace MultiplayerPlusServer.Extensions.Shout
                 }
             }
 
+
+            return true;
+        }
+
+        public bool FillShoutWheel(NetworkCommunicator networkPeer, GetPlayerShouts baseMessage)
+        {
+            var playerId = baseMessage.PlayerId;
+            var player = MPPlayers.GetMPAgentFromPlayerId(playerId);
+
+            if (player != null)
+            {
+                if (GameNetwork.IsServer)
+                {
+                    GameNetwork.BeginModuleEventAsServer(networkPeer);
+                    GameNetwork.WriteMessage(new SetPlayerShoutWheel(player.ShoutWheel));
+                    GameNetwork.EndModuleEventAsServer();
+                }
+            }
 
             return true;
         }

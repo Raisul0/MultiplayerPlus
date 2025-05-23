@@ -242,12 +242,12 @@
     <Compile Include="CustomViews\MPPEndOfRoundUIHandler.cs" />
     <Compile Include="CustomViews\MPShoutMenuView.cs" />
     <Compile Include="CustomViews\MPTauntMenuView.cs" />
+    <Compile Include="Extensions\Customization\MPPCustomizationHandler.cs" />
     <Compile Include="Extensions\PlayerInfo\SetPlayerIdHandler.cs" />
     <Compile Include="Extensions\Shout\AgentShoutTextDisplayHandler.cs" />
     <Compile Include="Extensions\Shout\SetPlayerShoutWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SetPlayerTauntWheelHandler.cs" />
     <Compile Include="Extensions\Taunt\SpawnTauntPrefabHandler.cs" />
-    <Compile Include="Extensions\Taunt\TauntClientHandler.cs" />
     <Compile Include="GameModes\Battle\MPPBattleMissionBehaviors.cs" />
     <Compile Include="GameModes\Duel\MPPDuelMissionBehaviors.cs" />
     <Compile Include="GameModes\FreeForAll\MPPFreeForAllMissionBehaviors.cs" />
