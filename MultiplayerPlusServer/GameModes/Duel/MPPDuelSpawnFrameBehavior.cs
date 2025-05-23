@@ -34,7 +34,7 @@ namespace MultiplayerPlusServer.GameModes.Duel
 
         public override MatrixFrame GetSpawnFrame(Team team, bool hasMount, bool isInitialSpawn)
         {
-            int duelAreaIndexIfDuelTeam = Mission.Current.GetMissionBehavior<MissionMultiplayerDuel>().GetDuelAreaIndexIfDuelTeam(team);
+            int duelAreaIndexIfDuelTeam = Mission.Current.GetMissionBehavior<MPPDuelBehavior>().GetDuelAreaIndexIfDuelTeam(team);
             List<GameEntity> list = ((duelAreaIndexIfDuelTeam >= 0) ? _duelAreaSpawnPoints[duelAreaIndexIfDuelTeam].ToList() : SpawnPoints.ToList());
             if (duelAreaIndexIfDuelTeam >= 0)
             {

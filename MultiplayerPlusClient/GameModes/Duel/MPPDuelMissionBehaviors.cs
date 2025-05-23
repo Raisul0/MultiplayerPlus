@@ -25,6 +25,8 @@ namespace MultiplayerPlusClient.GameModes.Duel
                     new MissionMultiplayerGameModeDuelClient(),
                     new MultiplayerAchievementComponent(),
                     new MultiplayerTimerComponent(),
+                    new MultiplayerMissionAgentVisualSpawnComponent(),
+                    new ConsoleMatchStartEndHandler(),
                     new MissionLobbyEquipmentNetworkComponent(),
                     new MissionHardBorderPlacer(),
                     new MissionBoundaryPlacer(),
@@ -38,7 +40,6 @@ namespace MultiplayerPlusClient.GameModes.Duel
                     new EquipmentControllerLeaveLogic(),
                     new MissionRecentPlayersComponent(),
                     new MultiplayerPreloadHelper()
-
                 };
             }, true, true);
         }
