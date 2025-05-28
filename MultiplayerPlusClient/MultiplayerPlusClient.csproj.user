@@ -6,4 +6,7 @@
     <StartArguments>/multiplayer _MODULES_%2aNative%2aMultiplayer%2aMultiplayerPlus%2a_MODULES_</StartArguments>
     <StartWorkingDirectory>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\</StartWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
 </Project>

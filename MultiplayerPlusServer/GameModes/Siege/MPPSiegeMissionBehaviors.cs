@@ -1,4 +1,5 @@
 ﻿using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Common;
 using MultiplayerPlusServer.GameModes.Siege;
 using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using TaleWorlds.Core;
@@ -19,7 +20,7 @@ namespace MultiplayerPlusServer.GameModes.Siege
                 {
                     return new MissionBehavior[]
                     {
-                        MissionLobbyComponent.CreateBehavior(),
+                        new MPPLobbyComponent(),
                         new MPPSiegeBehavior(),
                         new MultiplayerWarmupComponent(),
                         new MissionMultiplayerSiegeClient(),

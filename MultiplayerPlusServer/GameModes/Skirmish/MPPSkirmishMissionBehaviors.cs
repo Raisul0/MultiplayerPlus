@@ -1,4 +1,5 @@
 ﻿using MultiplayerPlusCommon.GameModes.Skirmish;
+using MultiplayerPlusServer.GameModes.Common;
 using MultiplayerPlusServer.GameModes.TeamDeathMatch;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -18,7 +19,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
                 {
                     return new MissionBehavior[]
                     {
-                        MissionLobbyComponent.CreateBehavior(),
+                        new MPPLobbyComponent(),
                         new MPPSkirmishBehavior(),
                         new MultiplayerRoundController(),
                         new MultiplayerWarmupComponent(),

@@ -3,7 +3,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace MultiplayerPlusServer.GameModes.Skirmish
+namespace MultiplayerPlusServer.GameModes.Duel
 {
     public class MPPDuelSpawnFrameBehavior : SpawnFrameBehaviorBase
     {
@@ -34,7 +34,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
 
         public override MatrixFrame GetSpawnFrame(Team team, bool hasMount, bool isInitialSpawn)
         {
-            int duelAreaIndexIfDuelTeam = Mission.Current.GetMissionBehavior<MissionMultiplayerDuel>().GetDuelAreaIndexIfDuelTeam(team);
+            int duelAreaIndexIfDuelTeam = Mission.Current.GetMissionBehavior<MPPDuelBehavior>().GetDuelAreaIndexIfDuelTeam(team);
             List<GameEntity> list = ((duelAreaIndexIfDuelTeam >= 0) ? _duelAreaSpawnPoints[duelAreaIndexIfDuelTeam].ToList() : SpawnPoints.ToList());
             if (duelAreaIndexIfDuelTeam >= 0)
             {

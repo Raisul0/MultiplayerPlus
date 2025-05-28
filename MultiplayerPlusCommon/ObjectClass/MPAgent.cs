@@ -16,6 +16,8 @@ namespace MultiplayerPlusCommon.ObjectClass
             ClassCosmetics = new List<MPAgentClassCosmetic> { };
             TauntWheel = new MPTauntWheel();
             ShoutWheel = new MPShoutWheel();
+            GameMVPTaunt = new MPTaunt();
+            RoundMVPTaunt = new MPTaunt();
         }
         public string SteamId { get; set; }
         public string UserName { get; set; } 
@@ -23,6 +25,8 @@ namespace MultiplayerPlusCommon.ObjectClass
         public List<MPAgentClassCosmetic> ClassCosmetics { get; set; }
         public MPTauntWheel TauntWheel { get; set; }
         public MPShoutWheel ShoutWheel { get; set; }
+        public MPTaunt GameMVPTaunt { get; set; }
+        public MPTaunt RoundMVPTaunt { get; set; }
 
         public void AddClassCosmetics(MPAgentClassCosmetic c)
         {

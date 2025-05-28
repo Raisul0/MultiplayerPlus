@@ -33,6 +33,30 @@ namespace MultiplayerPlusCommon.Constants
             return Players.FirstOrDefault(x => x.UserName == userName);
         }
 
+        public static string GetMatchMVPTauntByPlayerId(string playerId)
+        {
+            var agent = GetMPAgentFromPlayerId(playerId);
+            return agent.GameMVPTaunt.TauntAction ?? "";
+        }
+
+        public static string GetRoundMVPTauntByPlayerId(string playerId)
+        {
+            var agent = GetMPAgentFromPlayerId(playerId);
+            return agent.RoundMVPTaunt.TauntAction ?? "";
+        }
+
+        public static string GetMatchMVPTauntByUserName(string userName)
+        {
+            var agent = GetMPAgentFromUserName(userName);
+            return agent.GameMVPTaunt.TauntAction ?? "";
+        }
+
+        public static string GetRoundMVPTauntByUserName(string userName)
+        {
+            var agent = GetMPAgentFromUserName(userName);
+            return agent.RoundMVPTaunt.TauntAction ?? "";
+        }
+
         public static Equipment EquipPlayerCustomEquipment(string playerId,string characterClass,Equipment equipment)
         {
             if (equipment != null)
@@ -44,6 +68,30 @@ namespace MultiplayerPlusCommon.Constants
                     var classCosmetic = player.ClassCosmetics.FirstOrDefault(x => x.Class == characterClass);
 
                     if (classCosmetic!=null)
+                    {
+                        if (!string.IsNullOrEmpty(classCosmetic.Head)) equipment[EquipmentIndex.Head] = classCosmetic.HeadItem;
+                        if (!string.IsNullOrEmpty(classCosmetic.Shoulder)) equipment[EquipmentIndex.Cape] = classCosmetic.ShoulderItem;
+                        if (!string.IsNullOrEmpty(classCosmetic.Body)) equipment[EquipmentIndex.Body] = classCosmetic.BodyItem;
+                        if (!string.IsNullOrEmpty(classCosmetic.Arms)) equipment[EquipmentIndex.Gloves] = classCosmetic.ArmsItem;
+                        if (!string.IsNullOrEmpty(classCosmetic.Legs)) equipment[EquipmentIndex.Leg] = classCosmetic.LegsItems;
+                    }
+                }
+            }
+
+            return equipment;
+        }
+
+        public static Equipment EquipPlayerGameMVPEquipment(string playerId, Equipment equipment)
+        {
+            if (equipment != null)
+            {
+                var player = GetMPAgentFromPlayerId(playerId);
+
+                if (player != null)
+                {
+                    var classCosmetic = player.ClassCosmetics.FirstOrDefault(x => x.Class == "mvp_game");
+
+                    if (classCosmetic != null)
                     {
                         if (!string.IsNullOrEmpty(classCosmetic.Head)) equipment[EquipmentIndex.Head] = classCosmetic.HeadItem;
                         if (!string.IsNullOrEmpty(classCosmetic.Shoulder)) equipment[EquipmentIndex.Cape] = classCosmetic.ShoulderItem;

@@ -153,7 +153,7 @@ namespace MultiplayerPlusServer.GameModes.Skirmish
 
         public override MultiplayerGameType GetMissionType()
         {
-            return _gameType;
+            return MultiplayerGameType.Skirmish;
         }
 
         public override void OnBehaviorInitialize()

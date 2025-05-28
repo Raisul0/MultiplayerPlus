@@ -1,4 +1,5 @@
-﻿using MultiplayerPlusServer.GameModes.Skirmish;
+﻿using MultiplayerPlusServer.GameModes.Common;
+using MultiplayerPlusServer.GameModes.Skirmish;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace MultiplayerPlusServer.GameModes.Battle
                 {
                     return new MissionBehavior[]
                     {
-                        MissionLobbyComponent.CreateBehavior(),
+                        new MPPLobbyComponent(),
                         new MultiplayerRoundController(),
                         new MPPBattleBehavior(),
                         new MultiplayerWarmupComponent(),

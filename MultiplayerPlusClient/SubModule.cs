@@ -4,6 +4,7 @@ using MultiplayerPlusClient.GameModes.FreeForAll;
 using MultiplayerPlusClient.GameModes.Siege;
 using MultiplayerPlusClient.GameModes.Skirmish;
 using MultiplayerPlusClient.GameModes.TeamDeathMatch;
+using MultiplayerPlusClient.Patch;
 using MultiplayerPlusCommon.GameModes.Battle;
 using MultiplayerPlusCommon.GameModes.Duel;
 using MultiplayerPlusCommon.GameModes.FreeForAll;
@@ -18,6 +19,7 @@ namespace MultiplayerPlusClient
 {
     public class SubModule : MBSubModuleBase
     {
+        public const string ModuleId = "MultiplayerPlusClient";
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
             base.InitializeGameStarter(game, starterObject);
@@ -54,6 +56,7 @@ namespace MultiplayerPlusClient
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
+            //DirtyClientPatcher.Patch();
         }
 
         public override void OnBeforeMissionBehaviorInitialize(Mission mission)
