@@ -43,7 +43,7 @@ namespace MultiplayerPlusClient
 
             //Duel 
             MPPDuelGameMode.OnStartMultiplayerGame += MPPDuelMissionBehaviors.OpenMPPDuelClientBehaviors;
-            TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("MPPDuel"));
+            TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("DrDuel"));
 
             //Siege 
             MPPSiegeGameMode.OnStartMultiplayerGame += MPPSiegeMissionBehaviors.OpenMPPSiegeClientBehaviors;

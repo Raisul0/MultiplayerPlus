@@ -51,8 +51,8 @@ public class SubModule : MBSubModuleBase
         TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPBattleGameMode("MPPBattle"));
 
         //Duel 
-        MPPDuelGameMode.OnStartMultiplayerGame += MPPDuelMissionBehaviors.OpenMPPDuelMissionServerBehaviors;
-        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("MPPDuel"));
+        MPPDuelGameMode.OnStartMultiplayerGame += DrDuelMissionBehavior.OpenDrDuelServerMissionBehaviors;
+        TaleWorlds.MountAndBlade.Module.CurrentModule.AddMultiplayerGameMode(new MPPDuelGameMode("DrDuel"));
 
         //Siege 
         MPPSiegeGameMode.OnStartMultiplayerGame += MPPSiegeMissionBehaviors.OpenMPPSiegeMissionServerBehaviors;

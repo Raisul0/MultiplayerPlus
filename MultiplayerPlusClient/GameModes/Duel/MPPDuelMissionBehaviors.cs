@@ -17,7 +17,7 @@ namespace MultiplayerPlusClient.GameModes.Duel
         [MissionMethod]
         public static void OpenMPPDuelClientBehaviors(string scene)
         {
-            MissionState.OpenNew("MPPDuel", new MissionInitializerRecord(scene), delegate (Mission missionController)
+            MissionState.OpenNew("DrDuel", new MissionInitializerRecord(scene), delegate (Mission missionController)
             {
                 return new MissionBehavior[]
                 {

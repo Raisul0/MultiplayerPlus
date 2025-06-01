@@ -133,6 +133,13 @@
     <Compile Include="Constants\MPPlayers.cs" />
     <Compile Include="Constants\MPPWarmupStates.cs" />
     <Compile Include="GameModes\Battle\MPPBattleGameMode.cs" />
+    <Compile Include="GameModes\Duel\AdimiHelpers.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsConsoleLog.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsDuelFt7Anvil.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsLogManager.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsNotifier.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsTeleportDoors.cs" />
+    <Compile Include="GameModes\Duel\AdimiToolsTeleportDoorStandingPoint.cs" />
     <Compile Include="GameModes\Duel\MPPDuelGameMode.cs" />
     <Compile Include="GameModes\FreeForAll\MPPFreeForAllGameMode.cs" />
     <Compile Include="GameModes\Siege\MPPSiegeGameMode.cs" />

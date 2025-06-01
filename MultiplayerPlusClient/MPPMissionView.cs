@@ -115,7 +115,7 @@ namespace MultiplayerPlus.Client
             }.ToArray();
         }
 
-        [ViewMethod("MPPDuel")]
+        [ViewMethod("DrDuel")]
         public static MissionView[] OpenMPPDuelMission(Mission mission)
         {
             return new List<MissionView>
